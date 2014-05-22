@@ -1,3 +1,3 @@
-module GooderData
+class GooderData
   VERSION = "0.0.1"
 end

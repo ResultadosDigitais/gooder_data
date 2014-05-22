@@ -1,6 +1,6 @@
 # GooderData
 
-TODO: Write a gem description
+GoodData API ruby client
 
 ## Installation
 
@@ -10,7 +10,7 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -18,7 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### GoodData API Client
+```
+gd = GooderData.new
+gd.connect!("my.gd.client@email.com", "my_password")
+gd.project_id = "myprojectid"
+execution_id = gd.execute_process("process_id", "my_project_name/graph/graph_name.grf")
+```
+
 
 ## Contributing
 
