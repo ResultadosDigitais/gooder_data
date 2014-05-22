@@ -1,7 +1,6 @@
 require 'spec_helper'
-require 'gooder_data'
 
-describe GooderData, :vcr do
+describe GooderData::ApiClient, :vcr do
 
   let(:user) { 'user@example.org' }
   let(:password) { 'my_password' }
@@ -9,7 +8,7 @@ describe GooderData, :vcr do
   let(:process_id) { 'ex4mple4-e1b0-4524-b20b-pr0ce551decb' }
   let(:graph) { 'my_project/graph/my_awesome_graph.grf' }
 
-  let(:gd) { GooderData.new(project_id) }
+  let(:gd) { GooderData::ApiClient.new(project_id) }
 
   describe "#login" do
     subject(:login) { gd.login(user, password) }

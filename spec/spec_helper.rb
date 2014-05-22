@@ -14,3 +14,4 @@ VCR.configure do |c|
 end
 
 require 'pry'
+require 'gooder_data'

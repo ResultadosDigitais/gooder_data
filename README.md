@@ -20,18 +20,16 @@ Or install it yourself as:
 
 ### GoodData API Client
 ```
-gd = GooderData.new
-gd.connect!("my.gd.client@email.com", "my_password")
-gd.project_id = "myprojectid"
-execution_id = gd.execute_process("process_id", "my_project_name/graph/graph_name.grf")
+client = GooderData::ApiClient.new
+client.connect!("my.gd.client@email.com", "my_password")
+client.project_id = "myprojectid"
+execution_id = client.execute_process("process_id", "my_project_name/graph/graph_name.grf")
 ```
 
 ### Embedding GoodData Dashboard iFrame with SSO
 ```
 session_id = GooderData.SessionId.new("my.app.user@email.com").to_url
-
 iframe_url = "https://secure.gooddata.com/gdc/account/customerlogin?sessionId=#{ session_id }&serverURL=#{ my_sso_provider }&targetURL=#{ target_gd_dashboard_url }"
-
 <iframe src="<% iframe_url %>"/>
 ```
 
