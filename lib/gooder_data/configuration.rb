@@ -1,3 +1,5 @@
+#asdasd
+
 module GooderData
 
   class Configuration
