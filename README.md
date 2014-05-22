@@ -26,6 +26,35 @@ gd.project_id = "myprojectid"
 execution_id = gd.execute_process("process_id", "my_project_name/graph/graph_name.grf")
 ```
 
+### Embedding GoodData Dashboard iFrame with SSO
+```
+session_id = GooderData.SessionId.new("my.app.user@email.com").to_url
+
+iframe_url = "https://secure.gooddata.com/gdc/account/customerlogin?sessionId=#{ session_id }&serverURL=#{ my_sso_provider }&targetURL=#{ target_gd_dashboard_url }"
+
+<iframe src="<% iframe_url %>"/>
+```
+
+### Configurations and default values
+```
+GooderData.configure do |c|
+  self.signature_expiration_in_seconds = 3600 # 1 hour
+  # default = 36 hours
+  # 10 min < expiration < 36 hours; https://developer.gooddata.com/article/gooddata-pgp-single-sign-on
+
+  self.default_project_id = "my-prioject-id"
+  # default nil
+  # if not configured nor given programmatically it will raise error
+
+  self.default_user = "admin@domain.com"
+  # default nil
+  # if not configured nor given programmatically it will raise error
+
+  self.default_user_password = "mY-h4RD p@55w0rD_"
+  # default nil
+  # if not configured nor given programmatically it will raise error
+end
+```
 
 ## Contributing
 

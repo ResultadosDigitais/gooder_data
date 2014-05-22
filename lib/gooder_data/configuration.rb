@@ -8,7 +8,7 @@ class GooderData::Configuration
     self.base_uri = 'https://secure.gooddata.com/gdc'
     self.good_data_sso_public_key_url = 'https://developer.gooddata.com/downloads/sso/gooddata-sso.pub'
     self.good_data_sso_recipient = 'security@gooddata.com'
-    self.signature_expiration_in_seconds = 36 * 3600
+    self.signature_expiration_in_seconds = 36 * 3600 # 10 min < expiration < 36 hours; https://developer.gooddata.com/article/gooddata-pgp-single-sign-on
     self.default_project_id = nil
     self.default_user = nil
     self.default_user_password = nil
