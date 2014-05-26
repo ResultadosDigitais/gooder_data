@@ -16,7 +16,7 @@ module GooderData
     def to_url
       import_key!(configuration.good_data_sso_public_key_url) unless has_key?(configuration.good_data_sso_recipient)
 
-      signed_content = sign(session_id_json.to_s)
+      signed_content = sign(session_id_json)
       encrypted_content = encrypt(signed_content)
       CGI.escape(encrypted_content)
     end
@@ -52,7 +52,7 @@ module GooderData
       {
         email: @session_user_email,
         validity: Time.now.to_i + @signature_expiration_in_seconds
-      }
+      }.to_json
     end
 
     def configuration
