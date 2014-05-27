@@ -1,6 +1,8 @@
 require 'gooder_data/configuration'
 require 'gooder_data/api_client'
 require 'gooder_data/session_id'
+require 'gooder_data/dashboard'
+require 'gooder_data/sso'
 
 
 module GooderData

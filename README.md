@@ -21,36 +21,41 @@ Or install it yourself as:
 ### GoodData API Client
 ```
 client = GooderData::ApiClient.new
-client.connect!("my.gd.client@email.com", "my_password")
+client.connect!("my.gd.project.admin.user@email.com", "my_password")
 client.project_id = "myprojectid"
 execution_id = client.execute_process("process_id", "my_project_name/graph/graph_name.grf")
 ```
 
 ### Embedding GoodData Dashboard iFrame with SSO
 ```
-session_id = GooderData.SessionId.new("my.app.user@email.com").to_url
-iframe_url = "https://secure.gooddata.com/gdc/account/customerlogin?sessionId=#{ session_id }&serverURL=#{ my_sso_provider }&targetURL=#{ target_gd_dashboard_url }"
+dashboard_url = GooderData::Dashboard.new('my-dashboard-id', project_id: 'my-project-id').url
+iframe_url = GooderData::SSO.new("my.app.user@email.com", organization_name: 'my-organization').url(dashboard_url)
 <iframe src="<% iframe_url %>"/>
 ```
 
 ### Configurations and default values
 ```
 GooderData.configure do |c|
-  self.signature_expiration_in_seconds = 3600 # 1 hour
+  c.signature_expiration_in_seconds = 3600 # 1 hour
   # default = 36 hours
   # 10 min < expiration < 36 hours; https://developer.gooddata.com/article/gooddata-pgp-single-sign-on
 
-  self.default_project_id = "my-prioject-id"
-  # default nil
-  # if not configured nor given programmatically it will raise error
+  c.project_id = "my-prioject-id"
+  # default nil, :required
 
-  self.default_user = "admin@domain.com"
+  c.user_email = "gd.project.admin.user@domain.com"
   # default nil
-  # if not configured nor given programmatically it will raise error
 
-  self.default_user_password = "mY-h4RD p@55w0rD_"
+  c.user_password = "mY-h4RD p@55w0rD_"
+  # default nil, :required
+
+  c.sso_signer_email = "pgp.secret.signature.email@domain.com"
   # default nil
-  # if not configured nor given programmatically it will raise error
+  # gets first GPG signature if nil
+
+  c.sso_signer_password = 'secretpassword'
+  # default nil
+  # no passphrase signature if nil
 end
 ```
 

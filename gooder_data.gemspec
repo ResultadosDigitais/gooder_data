@@ -26,4 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock", "1.11.0" # this version is required by the vcr
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "ZenTest"
+  spec.add_development_dependency "autotest-fsevent"
+  spec.add_development_dependency "autotest-growl"
 end

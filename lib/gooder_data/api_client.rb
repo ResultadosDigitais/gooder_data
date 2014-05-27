@@ -11,7 +11,7 @@ module GooderData
 
     base_uri 'https://secure.gooddata.com/gdc'
 
-    def initialize(project_id = GooderData.configuration.default_project_id)
+    def initialize(project_id = GooderData.configuration.project_id)
       @super_secure_token = ""
       @temp_token = ""
       @project_id = project_id
@@ -29,7 +29,7 @@ module GooderData
       @temp_token = api_token
     end
 
-    def connect!(user = GooderData.configuration.default_user, password = GooderData.configuration.default_user_password)
+    def connect!(user = GooderData.configuration.user, password = GooderData.configuration.user_password)
       login!(user, password)
       api_token!
       self
