@@ -1,3 +1,6 @@
+require 'gpgme'
+require 'open-uri'
+
 module GooderData
 
   class SSO
@@ -12,6 +15,14 @@ module GooderData
       server_url = CGI.escape(@options.require(:organization_name))
       target_url = CGI.escape(target_url.gsub(/^(.*:\/\/)?([^\/\.]*\.[^\/\.]*){1,}/, ''))
       "https://secure.gooddata.com/gdc/account/customerlogin?sessionId=#{ session_id }&serverURL=#{ server_url }&targetURL=#{ target_url }"
+    end
+
+    def self.has_key?(name)
+      GPGME::Key.find(:public, name).any?
+    end
+
+    def self.import_key!(key_file_path_or_url)
+      GPGME::Key.import(open(key_file_path_or_url))
     end
 
   end

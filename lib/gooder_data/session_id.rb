@@ -1,5 +1,4 @@
 require 'gpgme'
-require 'open-uri'
 
 module GooderData
 
@@ -12,19 +11,11 @@ module GooderData
     end
 
     def to_url
-      import_key!(@options[:good_data_sso_public_key_url]) unless has_key?(@options[:good_data_sso_recipient])
+      GooderData::SSO.import_key!(@options[:good_data_sso_public_key_url]) unless GooderData::SSO.has_key?(@options[:good_data_sso_recipient])
 
       signed_content = sign(session_id_json)
       encrypted_content = encrypt(signed_content)
       CGI.escape(encrypted_content)
-    end
-
-    def has_key?(name)
-      GPGME::Key.find(:public, name).any?
-    end
-
-    def import_key!(key_file_path_or_url)
-      GPGME::Key.import(open(key_file_path_or_url))
     end
 
     private
