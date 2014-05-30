@@ -1,0 +1,168 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/account/login
+    body:
+      encoding: UTF-8
+      string: '{"postUserLogin":{"login":"user@example.org","password":"my_password","remember":1}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=; $Path=/gdc/account; GDCAuthTT=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - 5cTwVhJxOAMMcLlC
+      Server:
+      - Apache
+      Set-Cookie:
+      - GDCAuthSST=M0ckEdSST0000001; path=/gdc/account; expires=Sun, 15-Jun-2014 19:39:31
+        GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Wed, 30-Apr-2014 19:39:31 GMT; secure; HttpOnly
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '115'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '143'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 30 May 2014 19:39:31 GMT
+      X-Varnish:
+      - '883666993'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
+    http_version:
+  recorded_at: Fri, 30 May 2014 19:39:31 GMT
+- request:
+    method: get
+    uri: https://secure.gooddata.com/gdc/account/token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=M0ckEdSST0000001; $Path=/gdc/account; GDCAuthTT=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Gdc-Request:
+      - XWDHziXwU7q1g59N
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      Set-Cookie:
+      - GDCAuthTT=gdpnQr5Y5ud6FmIjoAZrfgoZWuwD8kkeCMVI2XpVA23MdGVRIXaG2jb2Hn9J3FzoqQUOBxQAN8r-ohrJR2VD1ojMpVD_3igq8YlNGeidCxxd2HyneeRxHO0W6eiaa-RNNSyCsDAkjcXYMd5uRt0KIBb4Dufqpkx1cKA8Iavb84B7InYiOjE0MDE0NzkzNzIsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiI3OWFkMTM2Mi1mOWU1LTRiNjYtYWRlNi1mOGFhZDAzNGUxNDAifQ;
+        Path=/gdc; Secure; HttpOnly
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '15'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 30 May 2014 19:39:32 GMT
+      X-Varnish:
+      - '883667082'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{}'
+    http_version:
+  recorded_at: Fri, 30 May 2014 19:39:32 GMT
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/account/domains/my_domain/users
+    body:
+      encoding: UTF-8
+      string: '{"accountSetting":{"login":"duplicated.user@example.com","password":"my
+        new password","email":"duplicated.user@example.com","verifyPassword":"my new
+        password","firstName":"John","lastName":"Smith","ssoProvider":"my.auth.provider"}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=M0ckEdSST0000001; $Path=/gdc/account; GDCAuthTT=gdpnQr5Y5ud6FmIjoAZrfgoZWuwD8kkeCMVI2XpVA23MdGVRIXaG2jb2Hn9J3FzoqQUOBxQAN8r-ohrJR2VD1ojMpVD_3igq8YlNGeidCxxd2HyneeRxHO0W6eiaa-RNNSyCsDAkjcXYMd5uRt0KIBb4Dufqpkx1cKA8Iavb84B7InYiOjE0MDE0NzkzNzIsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiI3OWFkMTM2Mi1mOWU1LTRiNjYtYWRlNi1mOGFhZDAzNGUxNDAifQ
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Gdc-Request:
+      - xRQlO64WHRPVI9KV
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '33'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '323'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 30 May 2014 19:39:33 GMT
+      X-Varnish:
+      - '883667109'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":{"errorClass":"com.gooddata.webapp.service.userprovisioning.LoginNameAlreadyRegisteredException","trace":"","message":"Account
+        cannot be created. Login name ''duplicated.user@example.com'' is already used.","component":"Webapp","errorId":"b5eebc6f-f8eb-471a-a0e6-ee7abf9f6a79","errorCode":"gdc1052","parameters":[]}}'
+    http_version:
+  recorded_at: Fri, 30 May 2014 19:39:33 GMT
+recorded_with: VCR 2.5.0

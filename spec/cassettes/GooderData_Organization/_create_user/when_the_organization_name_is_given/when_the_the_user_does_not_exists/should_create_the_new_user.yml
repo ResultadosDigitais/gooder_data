@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       X-Gdc-Request:
-      - g6ODrNJMaUUgmhxG
+      - GMSTFBpnViXZnnAV
       Server:
       - Apache
       Set-Cookie:
-      - GDCAuthSST=M0ckEdSST0000001; path=/gdc/account; expires=Sun, 01-Jun-2014 19:48:50
+      - GDCAuthSST=M0ckEdSST0000001; path=/gdc/account; expires=Sun, 15-Jun-2014 18:15:48
         GMT; secure; HttpOnly
-      - GDCAuthTT=; path=/gdc; expires=Wed, 16-Apr-2014 19:48:50 GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Wed, 30-Apr-2014 18:15:48 GMT; secure; HttpOnly
       Expires:
       - Mon, 26 Jul 1997 05:00:00 GMT
       Cache-Control:
@@ -37,7 +37,7 @@ http_interactions:
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '108'
+      - '82'
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -45,9 +45,9 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 16 May 2014 19:48:50 GMT
+      - Fri, 30 May 2014 18:15:48 GMT
       X-Varnish:
-      - '820508893'
+      - '883273055'
       Age:
       - '0'
       Via:
@@ -58,7 +58,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
     http_version:
-  recorded_at: Fri, 16 May 2014 19:48:50 GMT
+  recorded_at: Fri, 30 May 2014 18:15:48 GMT
 - request:
     method: get
     uri: https://secure.gooddata.com/gdc/account/token
@@ -78,7 +78,7 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       X-Gdc-Request:
-      - gPQcl8qcQfWIAJnc
+      - cR9FTAq181hqkGLR
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Cache-Control:
@@ -88,12 +88,12 @@ http_interactions:
       P3p:
       - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
       Set-Cookie:
-      - GDCAuthTT=pd4bZoguqAWDpNPliomGRVvGA_CoCSOki6IKfOFDiJhJuvwyIs3dlyi8oiCdpDUa1dPIHXm18DPfvaFQfSqst57WoeepmOkMdepsJ-Y9jyZAPk0nNI8A8QqRMS8LFnH4O_aaOqdZO_RD8t_y3hyTm2AWz2g75FQlx8FbFwsaR7t7InYiOjE0MDAyNzAzMzEsInUiOiI2NjYzODAiLCJsIjoiMCIsImsiOiI0MTZlODFlMS1iZTFhLTRkMTQtYWYwNS01OWIyOTcwODdlMzcifQ;
+      - GDCAuthTT=hdnsN-Hdhamdj65RkmWyHN5xuKb1LrT_xSpfyJ_TeIdxBQL97wRBQaDiiLp3z0Py5hED6FRqtMrHuRARcVfdkXvrsk4O7V9qIOp1la8QZNLntNAr7WcJW-rFnJSDPUXnFn1KVU4Brv6XgSHe3RvPFhCpDwDDJxT9nnNhZkKAG5V7InYiOjE0MDE0NzQzNDksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiI3OWFkMTM2Mi1mOWU1LTRiNjYtYWRlNi1mOGFhZDAzNGUxNDAifQ;
         Path=/gdc; Secure; HttpOnly
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '11'
+      - '13'
       Content-Type:
       - application/json
       Content-Length:
@@ -101,9 +101,9 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 16 May 2014 19:48:51 GMT
+      - Fri, 30 May 2014 18:15:49 GMT
       X-Varnish:
-      - '820508928'
+      - '883273100'
       Age:
       - '0'
       Via:
@@ -114,5 +114,55 @@ http_interactions:
       encoding: UTF-8
       string: '{}'
     http_version:
-  recorded_at: Wed, 21 May 2014 13:49:41 GMT
+  recorded_at: Fri, 30 May 2014 18:15:49 GMT
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/account/domains/my_domain/users
+    body:
+      encoding: UTF-8
+      string: '{"accountSetting":{"login":"new.user@example.com","password":"my new
+        password","email":"new.user@example.com","verifyPassword":"my new password","firstName":"John","lastName":"Smith","ssoProvider":"my.auth.provider"}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=M0ckEdSST0000001; $Path=/gdc/account; GDCAuthTT=hdnsN-Hdhamdj65RkmWyHN5xuKb1LrT_xSpfyJ_TeIdxBQL97wRBQaDiiLp3z0Py5hED6FRqtMrHuRARcVfdkXvrsk4O7V9qIOp1la8QZNLntNAr7WcJW-rFnJSDPUXnFn1KVU4Brv6XgSHe3RvPFhCpDwDDJxT9nnNhZkKAG5V7InYiOjE0MDE0NzQzNDksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiI3OWFkMTM2Mi1mOWU1LTRiNjYtYWRlNi1mOGFhZDAzNGUxNDAifQ
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Gdc-Request:
+      - NUAzT3XArFfPF8mE
+      Location:
+      - /gdc/account/profile/b36f2f698b0ebe125c8568d8d2396f08
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '344'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '63'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 30 May 2014 18:15:50 GMT
+      X-Varnish:
+      - '883273156'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"uri":"/gdc/account/profile/b36f2f698b0ebe125c8568d8d2396f08"}'
+    http_version:
+  recorded_at: Fri, 30 May 2014 18:15:50 GMT
 recorded_with: VCR 2.5.0

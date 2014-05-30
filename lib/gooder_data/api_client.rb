@@ -6,19 +6,24 @@ module GooderData
   class ApiClient
     include HTTParty
 
+    BAD_REQUEST = 400
     NOT_FOUND = 404
     UNAUTHORIZED = 401
 
     base_uri 'https://secure.gooddata.com/gdc'
 
-    def initialize(project_id = GooderData.configuration.project_id)
+    def initialize(options = {})
       @super_secure_token = ""
       @temp_token = ""
-      @project_id = project_id
+      @options = GooderData.configuration.merge(options)
+    end
+
+    def project_id
+      @options[:project_id]
     end
 
     def project_id=(project_id)
-      @project_id = project_id
+      @options[:project_id] = project_id
     end
 
     def super_secure_token=(super_secure_token)
@@ -29,7 +34,7 @@ module GooderData
       @temp_token = api_token
     end
 
-    def connect!(user = GooderData.configuration.user, password = GooderData.configuration.user_password)
+    def connect!(user = @options[:user], password = @options[:user_password])
       login!(user, password)
       api_token!
       self
@@ -40,16 +45,19 @@ module GooderData
     end
 
     def login(user, password)
-      response = post("/account/login", {
-        postUserLogin: {
-          login: user,
-          password: password,
-          remember: 1
-        }
-      })
-      raise "wrong user or password" if response.code == UNAUTHORIZED
-      validate(response, "login failed")
-      extract_cookie(response, 'GDCAuthSST')
+      api_to("login the user '#{ user }'", :no_validations) do
+        response = post("/account/login", {
+          postUserLogin: {
+            login: user,
+            password: password,
+            remember: 1
+          }
+        })
+        raise "wrong user or password for user #{ user }" if response.code == UNAUTHORIZED
+        response
+      end.that_responds do |response|
+        extract_cookie(response, 'GDCAuthSST')
+      end
     end
 
     def api_token!
@@ -57,52 +65,76 @@ module GooderData
     end
 
     def api_token
-      validate_login
-      response = get("/account/token")
-      validate(response, "api_token failed")
-      extract_cookie(response, 'GDCAuthTT')
+      api_to("get api_token", :needs_login) do
+        get("/account/token")
+      end.that_responds do |response|
+        extract_cookie(response, 'GDCAuthTT')
+      end
     end
 
+    # TODO Mats extract project related methods to own file and class
     def processes
-      validate_api_token
-      response = get("/projects/#{@project_id}/dataload/processes")
-      validate(response, "could not list processes for project '#{@project_id}' #{ process_id }, graph '#{ executable_graph_path }'")
-      response
+      api_to("list processes for project '#{ project_id }'") do
+        get("/projects/#{ options[:project_id] }/dataload/processes")
+      end
     end
 
     def execute_process(process_id, executable_graph_path)
-      validate_api_token
-      response = post("/projects/#{@project_id}/dataload/processes/#{process_id}/executions", {
-        execution: {
-          executable: executable_graph_path
-        }
-      })
-      raise try_hash_chain(response, 'error', 'message') if response.code == NOT_FOUND
-
-      validate(response, "could not execute the process #{ process_id }, graph '#{ executable_graph_path }'")
-      poll_url = try_hash_chain(response, 'executionTask', 'links', 'poll') || ""
-      execution_id = capture_match(poll_url, /\/executions\/([^\/\Z]*).*$/)
+      api_to("execute the process #{ process_id }, graph '#{ executable_graph_path }'") do
+        post("/projects/#{ project_id }/dataload/processes/#{ process_id }/executions", {
+          execution: {
+            executable: executable_graph_path
+          }
+        })
+      end.that_responds do |response|
+        poll_url = try_hash_chain(response, 'executionTask', 'links', 'poll') || ""
+        execution_id = capture_match(poll_url, /\/executions\/([^\/\Z]*).*$/)
+      end
     end
 
     def execute_schedule(schedule_id)
-      validate_api_token
-      reponse = post("/projects/#{@project_id}/schedules/#{schedule_id}/executions", { execution: {} })
-      validate(response, "could not execute schedule '#{ schedule_id }'")
+      api_to("execute schedule '#{ schedule_id }'") do
+        post("/projects/#{ project_id }/schedules/#{ schedule_id }/executions", { execution: {} })
+      end
     end
 
     private
+
+    def api_to(description, pre_validation = :needs_api_token)
+      send(pre_validation)
+      response = yield @options
+      validate(response, "could not #{ description }")
+    end
+
+    def no_validations; end
 
     def validate_api_token
       validate_login
       raise "api token is required at this point: please inform the api_token (temporary token - TT) or call api_token! first" if @temp_token.to_s.empty?
     end
+    alias_method :needs_api_token, :validate_api_token
 
     def validate_login
       raise "login is required at this point: please inform the super_secure_token (SST) or call login! first" if @super_secure_token.to_s.empty?
     end
+    alias_method :needs_login, :validate_login
 
     def validate(response, error_message)
-      raise "#{error_message}: #{response.code}: #{ try_hash_chain(response, 'error', 'message') || response.parsed_response }" unless success?(response)
+      raise error_class(response), "#{ error_message }: #{ error_message(response) || response.parsed_response }" unless success?(response)
+      response
+    end
+
+    def error_class(response)
+      case response.code
+      when BAD_REQUEST
+        GooderData::ApiClient::BadRequestError
+      else
+        GooderData::ApiClient::Error
+      end
+    end
+
+    def error_message(response)
+      try_hash_chain(response, 'error', 'message')
     end
 
     def post(path, data)
@@ -120,7 +152,7 @@ module GooderData
       {
         headers: {
           "Accept" => "application/json",
-          "Cookie" => "$Version=0; GDCAuthSST=#{@super_secure_token}; $Path=/gdc/account; GDCAuthTT=#{@temp_token}"
+          "Cookie" => "$Version=0; GDCAuthSST=#{ @super_secure_token }; $Path=/gdc/account; GDCAuthTT=#{ @temp_token }"
         }
       }
     end
@@ -144,7 +176,7 @@ module GooderData
     end
 
     def extract_cookie(response, param_name)
-      capture_match(response.headers['set-cookie'], /#{param_name}=([^;]*);/)
+      capture_match(response.headers['set-cookie'], /#{ param_name }=([^;]*);/)
     end
 
     def capture_match(string, regex, mismatch = '')
@@ -157,4 +189,12 @@ module GooderData
 
   end
 
+end
+
+module HTTParty
+  class Response
+    def that_responds
+      yield self
+    end
+  end
 end

@@ -3,7 +3,7 @@ module GooderData
   class Configuration
 
     attr_accessor :base_uri, :good_data_sso_public_key_url, :good_data_sso_recipient
-    attr_accessor :sso_signer_email, :sso_signer_password, :sso_signature_expiration_in_seconds
+    attr_accessor :sso_authentication_provider, :sso_signer_email, :sso_signer_password, :sso_signature_expiration_in_seconds
     attr_accessor :organization_name, :project_id, :user, :user_password
 
     def initialize
@@ -30,6 +30,7 @@ module GooderData
         base_uri: self.base_uri,
         good_data_sso_public_key_url: self.good_data_sso_public_key_url,
         good_data_sso_recipient: self.good_data_sso_recipient,
+        sso_authentication_provider: self.sso_authentication_provider,
         sso_signer_email: self.sso_signer_email,
         sso_signer_password: self.sso_signer_password,
         sso_signature_expiration_in_seconds: self.sso_signature_expiration_in_seconds,
@@ -56,7 +57,6 @@ module GooderData
 
       def require(option_name)
         return self[option_name] unless self[option_name].nil?
-
         raise RequiredOptionError.new, "#{ option_name } is needed at this point. please inform it by adding :#{ option_name } => \#{value} parameter to method call or using GooderData.configure"
       end
 
@@ -67,12 +67,6 @@ module GooderData
       end
 
     end
-
-    class Error < StandardError; end
-
-    class RequiredOptionError < Error; end
-
-    class UnknownOptionError < Error; end
 
   end
 

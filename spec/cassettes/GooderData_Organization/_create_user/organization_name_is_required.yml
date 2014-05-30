@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       X-Gdc-Request:
-      - g6ODrNJMaUUgmhxG
+      - Zqqy668yAAo7hydM
       Server:
       - Apache
       Set-Cookie:
-      - GDCAuthSST=M0ckEdSST0000001; path=/gdc/account; expires=Sun, 01-Jun-2014 19:48:50
+      - GDCAuthSST=M0ckEdSST0000001; path=/gdc/account; expires=Sun, 15-Jun-2014 18:15:47
         GMT; secure; HttpOnly
-      - GDCAuthTT=; path=/gdc; expires=Wed, 16-Apr-2014 19:48:50 GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Wed, 30-Apr-2014 18:15:47 GMT; secure; HttpOnly
       Expires:
       - Mon, 26 Jul 1997 05:00:00 GMT
       Cache-Control:
@@ -37,7 +37,7 @@ http_interactions:
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '108'
+      - '100'
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -45,9 +45,9 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 16 May 2014 19:48:50 GMT
+      - Fri, 30 May 2014 18:15:47 GMT
       X-Varnish:
-      - '820508893'
+      - '883272938'
       Age:
       - '0'
       Via:
@@ -58,7 +58,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
     http_version:
-  recorded_at: Fri, 16 May 2014 19:48:50 GMT
+  recorded_at: Fri, 30 May 2014 18:15:47 GMT
 - request:
     method: get
     uri: https://secure.gooddata.com/gdc/account/token
@@ -78,7 +78,7 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       X-Gdc-Request:
-      - gPQcl8qcQfWIAJnc
+      - 288fLkCTOxZ0YW8V
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Cache-Control:
@@ -88,12 +88,12 @@ http_interactions:
       P3p:
       - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
       Set-Cookie:
-      - GDCAuthTT=pd4bZoguqAWDpNPliomGRVvGA_CoCSOki6IKfOFDiJhJuvwyIs3dlyi8oiCdpDUa1dPIHXm18DPfvaFQfSqst57WoeepmOkMdepsJ-Y9jyZAPk0nNI8A8QqRMS8LFnH4O_aaOqdZO_RD8t_y3hyTm2AWz2g75FQlx8FbFwsaR7t7InYiOjE0MDAyNzAzMzEsInUiOiI2NjYzODAiLCJsIjoiMCIsImsiOiI0MTZlODFlMS1iZTFhLTRkMTQtYWYwNS01OWIyOTcwODdlMzcifQ;
+      - GDCAuthTT=aBdkFS5tOEIGzYjRlp47EFJVc9-JqLHGSJ01mWCSgInBFkOcsFW3kch_G70iAwp_4IPUjPHdPuNdjL8F-batE24ukcP7tYLLU4Wdc9xAVjidBScLDWxbuSGXyGs8xluyVmNmudsJ8DMdwTy1uGUzOWw4PejSi0pTePvXMsmutxJ7InYiOjE0MDE0NzQzNDcsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJkMGZjNjljYi1mYjkyLTQ2ZGQtYTE4ZC0yNTY3Y2U4N2ZmN2MifQ;
         Path=/gdc; Secure; HttpOnly
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '11'
+      - '8'
       Content-Type:
       - application/json
       Content-Length:
@@ -101,9 +101,9 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 16 May 2014 19:48:51 GMT
+      - Fri, 30 May 2014 18:15:47 GMT
       X-Varnish:
-      - '820508928'
+      - '883273008'
       Age:
       - '0'
       Via:
@@ -114,5 +114,5 @@ http_interactions:
       encoding: UTF-8
       string: '{}'
     http_version:
-  recorded_at: Wed, 21 May 2014 13:49:41 GMT
+  recorded_at: Fri, 30 May 2014 18:15:47 GMT
 recorded_with: VCR 2.5.0

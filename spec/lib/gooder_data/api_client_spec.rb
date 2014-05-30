@@ -8,7 +8,7 @@ describe GooderData::ApiClient, :vcr do
   let(:process_id) { 'ex4mple4-e1b0-4524-b20b-pr0ce551decb' }
   let(:graph) { 'my_project/graph/my_awesome_graph.grf' }
 
-  let(:gd) { GooderData::ApiClient.new(project_id) }
+  let(:gd) { GooderData::ApiClient.new(project_id: project_id) }
 
   describe "#login" do
     subject(:login) { gd.login(user, password) }
@@ -28,7 +28,7 @@ describe GooderData::ApiClient, :vcr do
       let(:user) { 'wrong_user@mail.com' }
       let(:password) { 'wrongpassword' }
       it "should raise error" do
-        expect { login }.to raise_error "wrong user or password"
+        expect { login }.to raise_error "wrong user or password for user #{ user }"
       end
     end
   end
@@ -80,7 +80,7 @@ describe GooderData::ApiClient, :vcr do
           let(:process_id) { '123123' }
 
           it "should raise error warning that process is inexistant" do
-            expect { execute_process }.to raise_error "Process #{ process_id } not found."
+            expect { execute_process }.to raise_error "could not execute the process #{ process_id }, graph '#{ graph }': Process #{ process_id } not found."
           end
         end
 
@@ -88,7 +88,7 @@ describe GooderData::ApiClient, :vcr do
           let(:graph) { 'my_project/graph/INEXISTANT.grf' }
 
           it "should raise error warning that process is inexistant" do
-            expect { execute_process }.to raise_error "Graph #{ graph } not found in process #{ process_id }"
+            expect { execute_process }.to raise_error "could not execute the process #{ process_id }, graph '#{ graph }': Graph #{ graph } not found in process #{ process_id }"
           end
         end
 

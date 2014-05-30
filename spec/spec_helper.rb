@@ -15,3 +15,14 @@ end
 
 require 'pry'
 require 'gooder_data'
+
+def successfull_login_options(customization = {})
+  {
+    organization_name: 'my_domain',
+    user: 'user@example.org',
+    user_password: 'my_password',
+    sso_authentication_provider: 'my.auth.provider',
+    sso_signer_email: 'user@example.org',
+    sso_signer_password: 'my_sso_password'
+  }.merge(customization)
+end
