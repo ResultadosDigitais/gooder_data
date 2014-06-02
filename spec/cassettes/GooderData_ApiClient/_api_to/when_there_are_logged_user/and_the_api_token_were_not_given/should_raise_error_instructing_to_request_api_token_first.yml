@@ -5,7 +5,7 @@ http_interactions:
     uri: https://secure.gooddata.com/gdc/account/login
     body:
       encoding: UTF-8
-      string: '{"postUserLogin":{"login":"wrong_user@mail.com","password":"wrongpassword","remember":1}}'
+      string: '{"postUserLogin":{"login":"user@example.org","password":"my_password","remember":1}}'
     headers:
       Accept:
       - application/json
@@ -15,35 +15,39 @@ http_interactions:
       - application/json
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
     headers:
       X-Gdc-Request:
-      - nsilVMtWEoddsGzs
+      - g6ODrNJMaUUgmhxG
       Server:
       - Apache
+      Set-Cookie:
+      - GDCAuthSST=M0ckEdSST0000001; path=/gdc/account; expires=Sun, 01-Jun-2014 19:48:50
+        GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Wed, 16-Apr-2014 19:48:50 GMT; secure; HttpOnly
       Expires:
       - Mon, 26 Jul 1997 05:00:00 GMT
       Cache-Control:
       - no-store, no-cache, must-revalidate, max-age=0
       Pragma:
       - no-cache
-      Www-Authenticate:
-      - GoodData realm="GoodData API"
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '50'
+      - '108'
       Content-Type:
-      - application/json
+      - application/json;charset=UTF-8
       Content-Length:
-      - '92'
+      - '143'
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 21 May 2014 13:34:40 GMT
+      - Fri, 16 May 2014 19:48:50 GMT
       X-Varnish:
-      - '2279064524'
+      - '820508893'
       Age:
       - '0'
       Via:
@@ -52,8 +56,7 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"parameters":[],"component":"Account::Login::AuthShare","message":"Bad
-        Login or Password!"}'
+      string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
     http_version:
-  recorded_at: Wed, 21 May 2014 13:34:40 GMT
+  recorded_at: Wed, 21 May 2014 13:49:43 GMT
 recorded_with: VCR 2.5.0

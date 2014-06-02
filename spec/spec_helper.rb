@@ -16,7 +16,7 @@ end
 require 'pry'
 require 'gooder_data'
 
-def successfull_login_options(customization = {})
+def test_options(customization = {})
   {
     organization_name: 'my_domain',
     user: 'user@example.org',

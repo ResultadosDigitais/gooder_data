@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       X-Gdc-Request:
-      - GMSTFBpnViXZnnAV
+      - gMQJhNF9VaGr1D3g
       Server:
       - Apache
       Set-Cookie:
-      - GDCAuthSST=M0ckEdSST0000001; path=/gdc/account; expires=Sun, 15-Jun-2014 18:15:48
+      - GDCAuthSST=KeljSsub6hK5INpo; path=/gdc/account; expires=Wed, 18-Jun-2014 19:17:56
         GMT; secure; HttpOnly
-      - GDCAuthTT=; path=/gdc; expires=Wed, 30-Apr-2014 18:15:48 GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Sat, 03-May-2014 19:17:56 GMT; secure; HttpOnly
       Expires:
       - Mon, 26 Jul 1997 05:00:00 GMT
       Cache-Control:
@@ -37,7 +37,7 @@ http_interactions:
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '82'
+      - '94'
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -45,9 +45,9 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 30 May 2014 18:15:48 GMT
+      - Mon, 02 Jun 2014 19:17:56 GMT
       X-Varnish:
-      - '883273055'
+      - '896597929'
       Age:
       - '0'
       Via:
@@ -58,7 +58,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
     http_version:
-  recorded_at: Fri, 30 May 2014 18:15:48 GMT
+  recorded_at: Mon, 02 Jun 2014 19:17:57 GMT
 - request:
     method: get
     uri: https://secure.gooddata.com/gdc/account/token
@@ -69,7 +69,7 @@ http_interactions:
       Accept:
       - application/json
       Cookie:
-      - $Version=0; GDCAuthSST=M0ckEdSST0000001; $Path=/gdc/account; GDCAuthTT=
+      - $Version=0; GDCAuthSST=KeljSsub6hK5INpo; $Path=/gdc/account; GDCAuthTT=
   response:
     status:
       code: 200
@@ -78,7 +78,7 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       X-Gdc-Request:
-      - cR9FTAq181hqkGLR
+      - lJsbujaeC2MXeqRl
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       Cache-Control:
@@ -88,12 +88,12 @@ http_interactions:
       P3p:
       - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
       Set-Cookie:
-      - GDCAuthTT=hdnsN-Hdhamdj65RkmWyHN5xuKb1LrT_xSpfyJ_TeIdxBQL97wRBQaDiiLp3z0Py5hED6FRqtMrHuRARcVfdkXvrsk4O7V9qIOp1la8QZNLntNAr7WcJW-rFnJSDPUXnFn1KVU4Brv6XgSHe3RvPFhCpDwDDJxT9nnNhZkKAG5V7InYiOjE0MDE0NzQzNDksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiI3OWFkMTM2Mi1mOWU1LTRiNjYtYWRlNi1mOGFhZDAzNGUxNDAifQ;
+      - GDCAuthTT=cJRlIDDdJ6IEguG43dc8w_7RRwFerxvXVDxNvmysSDp_xfRRMhgncz9RZKrew9XYM5h6MRC6DINNPyyT7mkl2lwL-Wa4B6GV3zHKmRxGiPZX3rmWCAz9ZwR7RV3BCwwE4Bg7m95rkOGByvl-QZqJoHY0xQ7NGGEjwKquz1GShV17InYiOjE0MDE3MzcyNzcsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJkYWM1MGQ1MS00MzYxLTRmZDEtYTA0ZC1jNzFjYjY1NmEwMDMifQ;
         Path=/gdc; Secure; HttpOnly
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '13'
+      - '9'
       Content-Type:
       - application/json
       Content-Length:
@@ -101,9 +101,9 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 30 May 2014 18:15:49 GMT
+      - Mon, 02 Jun 2014 19:17:57 GMT
       X-Varnish:
-      - '883273100'
+      - '896597985'
       Age:
       - '0'
       Via:
@@ -114,46 +114,43 @@ http_interactions:
       encoding: UTF-8
       string: '{}'
     http_version:
-  recorded_at: Fri, 30 May 2014 18:15:49 GMT
+  recorded_at: Mon, 02 Jun 2014 19:17:57 GMT
 - request:
     method: post
-    uri: https://secure.gooddata.com/gdc/account/domains/my_domain/users
+    uri: https://secure.gooddata.com/gdc/projects/ex4mplepr0ject1daxxmbz432w32qzdj/users
     body:
       encoding: UTF-8
-      string: '{"accountSetting":{"login":"new.user@example.com","password":"my new
-        password","email":"new.user@example.com","verifyPassword":"my new password","firstName":"John","lastName":"Smith","ssoProvider":"my.auth.provider"}}'
+      string: '{"user":{"content":{"status":"ENABLED","userRoles":["/gdc/projects/ex4mplepr0ject1daxxmbz432w32qzdj/roles/3"]},"links":{"self":"/gdc/account/profile/123123123"}}}'
     headers:
       Accept:
       - application/json
       Cookie:
-      - $Version=0; GDCAuthSST=M0ckEdSST0000001; $Path=/gdc/account; GDCAuthTT=hdnsN-Hdhamdj65RkmWyHN5xuKb1LrT_xSpfyJ_TeIdxBQL97wRBQaDiiLp3z0Py5hED6FRqtMrHuRARcVfdkXvrsk4O7V9qIOp1la8QZNLntNAr7WcJW-rFnJSDPUXnFn1KVU4Brv6XgSHe3RvPFhCpDwDDJxT9nnNhZkKAG5V7InYiOjE0MDE0NzQzNDksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiI3OWFkMTM2Mi1mOWU1LTRiNjYtYWRlNi1mOGFhZDAzNGUxNDAifQ
+      - $Version=0; GDCAuthSST=KeljSsub6hK5INpo; $Path=/gdc/account; GDCAuthTT=cJRlIDDdJ6IEguG43dc8w_7RRwFerxvXVDxNvmysSDp_xfRRMhgncz9RZKrew9XYM5h6MRC6DINNPyyT7mkl2lwL-Wa4B6GV3zHKmRxGiPZX3rmWCAz9ZwR7RV3BCwwE4Bg7m95rkOGByvl-QZqJoHY0xQ7NGGEjwKquz1GShV17InYiOjE0MDE3MzcyNzcsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJkYWM1MGQ1MS00MzYxLTRmZDEtYTA0ZC1jNzFjYjY1NmEwMDMifQ
       Content-Type:
       - application/json
   response:
     status:
-      code: 201
-      message: Created
+      code: 200
+      message: OK
     headers:
       Server:
       - Apache-Coyote/1.1
       X-Gdc-Request:
-      - NUAzT3XArFfPF8mE
-      Location:
-      - /gdc/account/profile/m0ckedpr0f1le0000000000000000002
+      - IWr6Dp36EDouIrhC
       X-Gdc-Log-Header:
       - ''
       X-Gdc-Request-Time:
-      - '344'
+      - '369'
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
-      - '63'
+      - '158'
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 30 May 2014 18:15:50 GMT
+      - Mon, 02 Jun 2014 19:17:58 GMT
       X-Varnish:
-      - '883273156'
+      - '2335545261'
       Age:
       - '0'
       Via:
@@ -162,7 +159,8 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"uri":"/gdc/account/profile/m0ckedpr0f1le0000000000000000002"}'
+      string: '{"projectUsersUpdateResult":{"successful":[],"failed":[{"user":"/gdc/account/profile/123123123","message":"Cannot
+        add user to project. User doesn''t exist"}]}}'
     http_version:
-  recorded_at: Fri, 30 May 2014 18:15:50 GMT
+  recorded_at: Mon, 02 Jun 2014 19:17:58 GMT
 recorded_with: VCR 2.5.0

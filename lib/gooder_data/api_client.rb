@@ -18,14 +18,6 @@ module GooderData
       @options = GooderData.configuration.merge(options)
     end
 
-    def project_id
-      @options[:project_id]
-    end
-
-    def project_id=(project_id)
-      @options[:project_id] = project_id
-    end
-
     def super_secure_token=(super_secure_token)
       @super_secure_token = super_secure_token
     end
@@ -72,39 +64,24 @@ module GooderData
       end
     end
 
-    # TODO Mats extract project related methods to own file and class
-    def processes
-      api_to("list processes for project '#{ project_id }'") do
-        get("/projects/#{ options[:project_id] }/dataload/processes")
-      end
-    end
-
-    def execute_process(process_id, executable_graph_path)
-      api_to("execute the process #{ process_id }, graph '#{ executable_graph_path }'") do
-        post("/projects/#{ project_id }/dataload/processes/#{ process_id }/executions", {
-          execution: {
-            executable: executable_graph_path
-          }
-        })
-      end.that_responds do |response|
-        poll_url = try_hash_chain(response, 'executionTask', 'links', 'poll') || ""
-        execution_id = capture_match(poll_url, /\/executions\/([^\/\Z]*).*$/)
-      end
-    end
-
-    def execute_schedule(schedule_id)
-      api_to("execute schedule '#{ schedule_id }'") do
-        post("/projects/#{ project_id }/schedules/#{ schedule_id }/executions", { execution: {} })
-      end
-    end
-
-    private
-
     def api_to(description, pre_validation = :needs_api_token)
       send(pre_validation)
       response = yield @options
       validate(response, "could not #{ description }")
     end
+
+    def post(path, data)
+      options = basic_options
+      options[:headers]["Content-Type"] = "application/json"
+      options[:body] = data.to_json
+      send_request(:post, path, options)
+    end
+
+    def get(path)
+      send_request(:get, path)
+    end
+
+    private
 
     def no_validations; end
 
@@ -135,17 +112,6 @@ module GooderData
 
     def error_message(response)
       try_hash_chain(response, 'error', 'message')
-    end
-
-    def post(path, data)
-      options = basic_options
-      options[:headers]["Content-Type"] = "application/json"
-      options[:body] = data.to_json
-      send_request(:post, path, options)
-    end
-
-    def get(path)
-      send_request(:get, path)
     end
 
     def basic_options

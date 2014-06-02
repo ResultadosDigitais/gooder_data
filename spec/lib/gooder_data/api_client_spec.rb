@@ -4,14 +4,11 @@ describe GooderData::ApiClient, :vcr do
 
   let(:user) { 'user@example.org' }
   let(:password) { 'my_password' }
-  let(:project_id) { 'ex4mplepr0ject1daxxmbz432w32qzdj' }
-  let(:process_id) { 'ex4mple4-e1b0-4524-b20b-pr0ce551decb' }
-  let(:graph) { 'my_project/graph/my_awesome_graph.grf' }
 
-  let(:gd) { GooderData::ApiClient.new(project_id: project_id) }
+  let(:client) { GooderData::ApiClient.new }
 
   describe "#login" do
-    subject(:login) { gd.login(user, password) }
+    subject(:login) { client.login(user, password) }
     let(:sst) { login }
 
     context "when the user and the password are correct" do
@@ -42,12 +39,12 @@ describe GooderData::ApiClient, :vcr do
   end
 
   describe "#api_token" do
-    subject(:api_token) { gd.api_token }
+    subject(:api_token) { client.api_token }
 
     it_behaves_like "login is required"
 
     context "when there are logged user" do
-      before { gd.login!(user, password) }
+      before { client.login!(user, password) }
 
       it "should get api token successfully" do
         api_token.to_s.should_not be_empty
@@ -59,13 +56,19 @@ describe GooderData::ApiClient, :vcr do
     end
   end
 
-  describe "#execute_process" do
-    subject(:execute_process) { gd.execute_process(process_id, graph) }
+  describe "#api_to" do
+    subject(:api_to) do
+      client.api_to("retrieve profile's first name") do |options|
+        client.get("/account/profile/m0ckedpr0f1le0000000000000000001")
+      end.that_responds do |response|
+        response['accountSetting']['firstName']
+      end
+    end
 
     it_behaves_like "login is required"
 
     context "when there are logged user" do
-      before { gd.login!(user, password) }
+      before { client.login!(user, password) }
 
       context "and the api token were not given" do
         it "should raise error instructing to request api token first" do
@@ -74,33 +77,11 @@ describe GooderData::ApiClient, :vcr do
       end
 
       context "and the api token were set" do
-        before { gd.api_token! }
+        before { client.api_token! }
 
-        context "and the given process_id is the id of an inexistant process" do
-          let(:process_id) { '123123' }
-
-          it "should raise error warning that process is inexistant" do
-            expect { execute_process }.to raise_error "could not execute the process #{ process_id }, graph '#{ graph }': Process #{ process_id } not found."
-          end
-        end
-
-        context "and the given graph_path references an inexistant graph" do
-          let(:graph) { 'my_project/graph/INEXISTANT.grf' }
-
-          it "should raise error warning that process is inexistant" do
-            expect { execute_process }.to raise_error "could not execute the process #{ process_id }, graph '#{ graph }': Graph #{ graph } not found in process #{ process_id }"
-          end
-        end
-
-        context "and the given process_id and graph path exists" do
-
-          it "should be able to execute an existing process" do
-            expect { execute_process }.to_not raise_error
-          end
-
-          it "should return the execution id" do
-            expect(execute_process).to eq '5379fb1de4b0b35947aa1510'
-          end
+        it "should execute successfully" do
+          expect(client).to receive(:get).with("/account/profile/m0ckedpr0f1le0000000000000000001").and_call_original
+          expect(api_to).to eq 'John'
         end
       end
     end

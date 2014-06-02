@@ -5,7 +5,7 @@ describe GooderData::Organization, :vcr do
   let(:password) { nil }
   let(:first_name) { nil }
   let(:last_name) { nil }
-  let(:options) { successfull_login_options }
+  let(:options) { test_options }
 
   subject(:organization) do
     VCR.use_cassette('GooderData_ApiClient/_api_token/when_there_are_logged_user/should_get_api_token_successfully') do
@@ -14,10 +14,9 @@ describe GooderData::Organization, :vcr do
   end
 
   describe "#initialize" do
-    subject(:initialize) { organization }
     it "should connect to gooddata api" do
       expect_any_instance_of(GooderData::ApiClient).to receive(:connect!).with(no_args)
-      initialize
+      subject
     end
   end
 
@@ -67,7 +66,7 @@ describe GooderData::Organization, :vcr do
         end
 
         it "should return the new user's profile ID" do
-          expect(create_user).to eq 'b36f2f698b0ebe125c8568d8d2396f08'
+          expect(create_user).to eq 'm0ckedpr0f1le0000000000000000002'
         end
       end
 
