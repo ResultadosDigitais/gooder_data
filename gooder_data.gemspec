@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["guih.matsumoto@gmail.com"]
   spec.summary       = %q{GoodData API client and SSO implementation utilities}
   # spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/ResultadosDigitais/gooder_data"
   spec.license       = "MIT"
 
   # spec.files         = `git ls-files -z`.split("\x0") # commented because of Gem::Package::TooLongFileName that was raising
