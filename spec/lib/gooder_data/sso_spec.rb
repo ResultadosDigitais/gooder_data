@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe GooderData::SSO do
   let(:user_email) { 'user@example.org' }
-  let(:organization_name) { 'organization_name' }
+  let(:sso_authentication_provider) { 'my.auth.provider' }
   let(:session_id) { double('session_id') }
   let(:generated_session_id) { 'url_encoded_session_id' }
 
@@ -19,16 +19,16 @@ describe GooderData::SSO do
 
     subject(:sso_url) { sso.url(target_url) }
 
-    context "when organization_name is configured" do
-      let(:options) { { organization_name: organization_name } }
+    context "when sso_authentication_provider is configured" do
+      let(:options) { { sso_authentication_provider: sso_authentication_provider } }
 
       it "should generate new SessionId" do
         expect(GooderData::SessionId).to receive(:new).with(user_email, anything) { session_id }
         sso_url
       end
 
-      it "should generate url with the generated session_id, url encoded organization name and url encoded target url without the host" do
-        expect(sso_url).to eq "https://secure.gooddata.com/gdc/account/customerlogin?sessionId=#{ generated_session_id }&serverURL=#{ organization_name }&targetURL=#{ encoded_target_url_without_host }"
+      it "should generate url with the generated session_id, url encoded sso_authentication_provider and url encoded target url without the host" do
+        expect(sso_url).to eq "https://secure.gooddata.com/gdc/account/customerlogin?sessionId=#{ generated_session_id }&serverURL=#{ sso_authentication_provider }&targetURL=#{ encoded_target_url_without_host }"
       end
     end
   end

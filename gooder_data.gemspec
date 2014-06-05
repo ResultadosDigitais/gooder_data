@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["guih"]
   spec.email         = ["guih.matsumoto@gmail.com"]
   spec.summary       = %q{GoodData API client and SSO implementation utilities}
-  # spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.description   = %q{Flexible and easy GoodData integration utilities for ruby}
   spec.homepage      = "https://github.com/ResultadosDigitais/gooder_data"
   spec.license       = "MIT"
 

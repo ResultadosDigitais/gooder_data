@@ -39,7 +39,7 @@ module GooderData
     end
 
     def add_user(profile_id, role_id = GooderData::Project::Role::EMBEDDED_DASHBOARD_ONLY)
-      api_to("add the user '#{ profile_id }' to project '#{ project_id }'") do |options|
+      api_to("add the user '#{ profile_id }' to project '#{ project_id }'") do
         post("/projects/#{ project_id }/users", {
           user: {
             content: {
