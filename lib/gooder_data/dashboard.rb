@@ -16,12 +16,6 @@ module GooderData
       url
     end
 
-    private
-
-    def configuration
-      GooderData.configuration
-    end
-
   end
 
 end
