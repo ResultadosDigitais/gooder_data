@@ -83,6 +83,11 @@ module GooderData
 
     private
 
+    def to_json_hash_array(response, api_class, *array_path)
+      elements = try_hash_chain(response, *array_path) || []
+      JsonHashArray.from_haw_json(api_class, elements, @options)
+    end
+
     def no_validations; end
 
     def validate_api_token
@@ -162,5 +167,6 @@ module HTTParty
     def that_responds
       yield self
     end
+    alias_method :responds, :that_responds
   end
 end

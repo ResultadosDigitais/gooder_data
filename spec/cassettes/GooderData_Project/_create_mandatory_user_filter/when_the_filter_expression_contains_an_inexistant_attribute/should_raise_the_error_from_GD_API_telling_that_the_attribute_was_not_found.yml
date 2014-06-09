@@ -1,0 +1,172 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/account/login
+    body:
+      encoding: UTF-8
+      string: '{"postUserLogin":{"login":"user@example.org","password":"my_password","remember":1}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=; $Path=/gdc/account; GDCAuthTT=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - krqQ4H8mKwpa4aRL
+      Server:
+      - Apache
+      Set-Cookie:
+      - GDCAuthSST=hzpmWU4OCMFVbayI; path=/gdc/account; expires=Sun, 22-Jun-2014 14:07:55
+        GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Wed, 07-May-2014 14:07:55 GMT; secure; HttpOnly
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '123'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '143'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 06 Jun 2014 14:07:55 GMT
+      X-Varnish:
+      - '2356775835'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
+    http_version:
+  recorded_at: Fri, 06 Jun 2014 14:07:55 GMT
+- request:
+    method: get
+    uri: https://secure.gooddata.com/gdc/account/token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=hzpmWU4OCMFVbayI; $Path=/gdc/account; GDCAuthTT=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Gdc-Request:
+      - Y7CmKJbV3f3tfAld
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      Set-Cookie:
+      - GDCAuthTT=G2lAGgt89NkpNpUSHFNqAw5kYt52-hUDgN_Yjkduk4PMICyremQiCDjh5An6UtFdZhRNrQ_vGib0QR4AkXL2xfXx6ObLR0deCwJ6nhrTkc-mi9CKvs7M8GI8g-nRxlMtwUsHlqRWvd40F2mhLbIAs99E5e73lokBiiFCm7Xxl-t7InYiOjE0MDIwNjQyNzYsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiIwOTUzMWRhNy04NGYyLTRkM2QtOWY1OS05YWMxNDFjMDY2YjIifQ;
+        Path=/gdc; Secure; HttpOnly
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '15'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 06 Jun 2014 14:07:56 GMT
+      X-Varnish:
+      - '2356775889'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{}'
+    http_version:
+  recorded_at: Fri, 06 Jun 2014 14:07:56 GMT
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj
+    body:
+      encoding: UTF-8
+      string: '{"userFilter":{"content":{"expression":"[/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/123]=[/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/123/elements?id=1231]"},"meta":{"category":"userFilter","title":"accountfilter"}}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=hzpmWU4OCMFVbayI; $Path=/gdc/account; GDCAuthTT=G2lAGgt89NkpNpUSHFNqAw5kYt52-hUDgN_Yjkduk4PMICyremQiCDjh5An6UtFdZhRNrQ_vGib0QR4AkXL2xfXx6ObLR0deCwJ6nhrTkc-mi9CKvs7M8GI8g-nRxlMtwUsHlqRWvd40F2mhLbIAs99E5e73lokBiiFCm7Xxl-t7InYiOjE0MDIwNjQyNzYsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiIwOTUzMWRhNy04NGYyLTRkM2QtOWY1OS05YWMxNDFjMDY2YjIifQ
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Gdc-Request:
+      - OlJHA2TsrvQGi8ZV
+      Server:
+      - Apache
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '57'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '308'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 06 Jun 2014 14:07:57 GMT
+      X-Varnish:
+      - '2356775959'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":{"parameters":["[/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/123]=[/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/123/elements?id=1231]"],"requestId":"OlJHA2TsrvQGi8ZV:dihxinshx4nf9gkb","component":"MD::Obj","errorClass":"GDC::Exception::User","message":"Expression
+        not allowed in userFilter ''%s''."}}'
+    http_version:
+  recorded_at: Fri, 06 Jun 2014 14:07:57 GMT
+recorded_with: VCR 2.5.0

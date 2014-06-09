@@ -1,0 +1,172 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/account/login
+    body:
+      encoding: UTF-8
+      string: '{"postUserLogin":{"login":"user@example.org","password":"my_password","remember":1}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=; $Path=/gdc/account; GDCAuthTT=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - wuf98Qtnr7xIhNtM
+      Server:
+      - Apache
+      Set-Cookie:
+      - GDCAuthSST=HKaHxRClzAvqh1tO; path=/gdc/account; expires=Wed, 25-Jun-2014 18:18:05
+        GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Sat, 10-May-2014 18:18:05 GMT; secure; HttpOnly
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '155'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '143'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 18:18:05 GMT
+      X-Varnish:
+      - '2370588423'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 18:18:05 GMT
+- request:
+    method: get
+    uri: https://secure.gooddata.com/gdc/account/token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=HKaHxRClzAvqh1tO; $Path=/gdc/account; GDCAuthTT=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Gdc-Request:
+      - 9MfS3NYnfUpxz4YP
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      Set-Cookie:
+      - GDCAuthTT=S5VCbPxycjjN1G6rHARFRwf1CnxiQyotMmkw7dIUMaM9kFMz2xv5lVIyNLGbczYZAsVNH_R2V_pkHPaKmos-ZGKu7yXZwozWCO6KakkCrfKOOj_AYJmVS2gTYgxWlwnHX0zMhqovYr9dM-wXroYcz6ukr-MJ00qGu3jmqTzsLb97InYiOjE0MDIzMzg0ODksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJiZjE5OTk3MC1jMWE3LTQyMGUtYTg1My02ZjFiMGIyZmRjMmMifQ;
+        Path=/gdc; Secure; HttpOnly
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '23'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 18:18:09 GMT
+      X-Varnish:
+      - '2370588505'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 18:18:09 GMT
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/userfilters
+    body:
+      encoding: UTF-8
+      string: '{"userFilters":{"items":[{"user":"/gdc/account/profile/123123123","userFilters":["/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/2646"]}]}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=HKaHxRClzAvqh1tO; $Path=/gdc/account; GDCAuthTT=S5VCbPxycjjN1G6rHARFRwf1CnxiQyotMmkw7dIUMaM9kFMz2xv5lVIyNLGbczYZAsVNH_R2V_pkHPaKmos-ZGKu7yXZwozWCO6KakkCrfKOOj_AYJmVS2gTYgxWlwnHX0zMhqovYr9dM-wXroYcz6ukr-MJ00qGu3jmqTzsLb97InYiOjE0MDIzMzg0ODksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJiZjE5OTk3MC1jMWE3LTQyMGUtYTg1My02ZjFiMGIyZmRjMmMifQ
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Gdc-Request:
+      - l2ddJ6AnAmXce5hX
+      Server:
+      - Apache
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '87'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '203'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 18:18:10 GMT
+      X-Varnish:
+      - '2370588711'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":{"parameters":["123123123"],"requestId":"l2ddJ6AnAmXce5hX:adqcg2o8pjm6hju3","component":"GDC::REST::Client::GDCAgent","errorClass":"GDC::Exception::NotFound","message":"User
+        %s doesn''t exist."}}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 18:18:10 GMT
+recorded_with: VCR 2.5.0

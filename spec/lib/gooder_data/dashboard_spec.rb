@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe GooderData::Dashboard do
-  subject(:dashboard) { GooderData::Dashboard.new(dashboard_id, project_id: project_id) }
+describe GooderData::Project::Dashboard do
+  subject(:dashboard) { GooderData::Project::Dashboard.new(dashboard_id, project_id: project_id) }
 
 
   describe "#url" do

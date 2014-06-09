@@ -27,11 +27,24 @@ process_id = project.execute_process("#{ process_id }", "#{ my_project_name/grap
 ### Embedding GoodData Dashboard iFrame with SSO
 ```ruby
 # Controller
-dashboard_url = GooderData::Dashboard.new('my-dashboard-id', project_id: 'my-project-id').url
+dashboard_url = GooderData::Project::Dashboard.new('my-dashboard-id', project_id: 'my-project-id').url
 iframe_url = GooderData::SSO.new("my.app.user@email.com", organization_name: 'my-organization').url(dashboard_url)
 
 # index.html.erb
 <iframe src="<%= iframe_url -%>"/>
+```
+
+### Creating and assigning Mandatory User Filter (MUF)
+```ruby
+project = GooderData::Project.new(project_id: 'my-project-id')
+
+attribute = project.query_attributes.find(identifier: 'my_dataset.my_attribute')
+values = attribute.values.where { |value| value.title.to_i > 5 }
+query = GooderData::Project::Query.new(attribute).in(*values)
+
+filter_id = project.create_mandatory_user_filter('My filter name', query)
+
+project.bind_mandatory_user_filter(filter_id, 'my-user-profile-id')
 ```
 
 ### GoodData API Client and using non implemented api calls

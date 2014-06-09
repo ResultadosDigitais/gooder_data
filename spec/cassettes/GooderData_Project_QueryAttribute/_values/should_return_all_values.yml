@@ -1,0 +1,257 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/account/login
+    body:
+      encoding: UTF-8
+      string: '{"postUserLogin":{"login":"user@example.org","password":"my_password","remember":1}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=; $Path=/gdc/account; GDCAuthTT=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - TGJWnMeAqEcCUu4n
+      Server:
+      - Apache
+      Set-Cookie:
+      - GDCAuthSST=z42gz07QwIBkCfut; path=/gdc/account; expires=Wed, 25-Jun-2014 15:59:22
+        GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Sat, 10-May-2014 15:59:22 GMT; secure; HttpOnly
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '140'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '143'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 15:59:22 GMT
+      X-Varnish:
+      - '931048566'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 15:59:22 GMT
+- request:
+    method: get
+    uri: https://secure.gooddata.com/gdc/account/token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=z42gz07QwIBkCfut; $Path=/gdc/account; GDCAuthTT=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Gdc-Request:
+      - ivMov74rUxoEV6gJ
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      Set-Cookie:
+      - GDCAuthTT=cyHwsM0KPAfF_0veGhO_YgRKBr2UqlBdz0NrHXGwuxsknDCJ16FlKws0wyM6djU43lELe39HEk4UnzEJEOjizDSyHwCinow3-hTbn_kZdC_u_AT-BrT5RrXCRbH5UMgG3Am3bdNKrYUDN1iklnRb_6P24ZD8gD0ZyJh4rs9ujpR7InYiOjE0MDIzMzAxNjIsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJiZjE5OTk3MC1jMWE3LTQyMGUtYTg1My02ZjFiMGIyZmRjMmMifQ;
+        Path=/gdc; Secure; HttpOnly
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '15'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 15:59:22 GMT
+      X-Varnish:
+      - '931048625'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 15:59:23 GMT
+- request:
+    method: get
+    uri: https://secure.gooddata.com/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=z42gz07QwIBkCfut; $Path=/gdc/account; GDCAuthTT=cyHwsM0KPAfF_0veGhO_YgRKBr2UqlBdz0NrHXGwuxsknDCJ16FlKws0wyM6djU43lELe39HEk4UnzEJEOjizDSyHwCinow3-hTbn_kZdC_u_AT-BrT5RrXCRbH5UMgG3Am3bdNKrYUDN1iklnRb_6P24ZD8gD0ZyJh4rs9ujpR7InYiOjE0MDIzMzAxNjIsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJiZjE5OTk3MC1jMWE3LTQyMGUtYTg1My02ZjFiMGIyZmRjMmMifQ
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - FORQGBhM9BlPOP9p
+      Server:
+      - Apache
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '62'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2022'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 15:59:23 GMT
+      X-Varnish:
+      - '931048672'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdHRyaWJ1dGUiOnsiY29udGVudCI6eyJwayI6W3siZGF0YSI6Ii9nZGMv
+        bWQvZXg0bXBsZXByMGplY3QxZGF4eG1iejQzMnczMnF6ZGovb2JqLzc1MyIs
+        InR5cGUiOiJjb2wifV0sImRpc3BsYXlGb3JtcyI6W3siY29udGVudCI6eyJm
+        b3JtT2YiOiIvZ2RjL21kL2V4NG1wbGVwcjBqZWN0MWRheHhtYno0MzJ3MzJx
+        emRqL29iai8xMDcyIiwiZXhwcmVzc2lvbiI6IlsvZ2RjL21kL2V4NG1wbGVw
+        cjBqZWN0MWRheHhtYno0MzJ3MzJxemRqL29iai83NTVdIiwibGRtZXhwcmVz
+        c2lvbiI6IiJ9LCJsaW5rcyI6eyJlbGVtZW50cyI6Ii9nZGMvbWQvZXg0bXBs
+        ZXByMGplY3QxZGF4eG1iejQzMnczMnF6ZGovb2JqLzEwNzMvZWxlbWVudHMi
+        fSwibWV0YSI6eyJhdXRob3IiOiIvZ2RjL2FjY291bnQvcHJvZmlsZS9tMGNr
+        ZWRwcjBmMWxlMDAwMDAwMDAwMDAwMDAwMDAwMyIsInVyaSI6Ii9nZGMvbWQv
+        ZXg0bXBsZXByMGplY3QxZGF4eG1iejQzMnczMnF6ZGovb2JqLzEwNzMiLCJ0
+        YWdzIjoiIiwiY3JlYXRlZCI6IjIwMTQtMDQtMjMgMTY6NTg6NTMiLCJpZGVu
+        dGlmaWVyIjoibGFiZWwubGlmZWN5Y2xlc3RhZ2UubGlmZWN5Y2xlc3RhZ2Ui
+        LCJkZXByZWNhdGVkIjoiMCIsInN1bW1hcnkiOiIiLCJ0aXRsZSI6IkVzdMOh
+        Z2lvIEZ1bmlsIiwiY2F0ZWdvcnkiOiJhdHRyaWJ1dGVEaXNwbGF5Rm9ybSIs
+        InVwZGF0ZWQiOiIyMDE0LTA2LTA1IDA0OjA1OjU2IiwiY29udHJpYnV0b3Ii
+        OiIvZ2RjL2FjY291bnQvcHJvZmlsZS9tMGNrZWRwcjBmMWxlMDAwMDAwMDAw
+        MDAwMDAwMDAwMyJ9fSx7ImNvbnRlbnQiOnsiZm9ybU9mIjoiL2dkYy9tZC9l
+        eDRtcGxlcHIwamVjdDFkYXh4bWJ6NDMydzMycXpkai9vYmovMTA3MiIsImV4
+        cHJlc3Npb24iOiJbL2dkYy9tZC9leDRtcGxlcHIwamVjdDFkYXh4bWJ6NDMy
+        dzMycXpkai9vYmovMjI1NV0iLCJsZG1leHByZXNzaW9uIjoiIn0sImxpbmtz
+        Ijp7ImVsZW1lbnRzIjoiL2dkYy9tZC9leDRtcGxlcHIwamVjdDFkYXh4bWJ6
+        NDMydzMycXpkai9vYmovMjI2MS9lbGVtZW50cyJ9LCJtZXRhIjp7ImF1dGhv
+        ciI6Ii9nZGMvYWNjb3VudC9wcm9maWxlL20wY2tlZHByMGYxbGUwMDAwMDAw
+        MDAwMDAwMDAwMDAzIiwidXJpIjoiL2dkYy9tZC9leDRtcGxlcHIwamVjdDFk
+        YXh4bWJ6NDMydzMycXpkai9vYmovMjI2MSIsInRhZ3MiOiIiLCJjcmVhdGVk
+        IjoiMjAxNC0wNi0wNSAwNDowNTo1NiIsImlkZW50aWZpZXIiOiJsYWJlbC5s
+        aWZlY3ljbGVzdGFnZS5saWZlY3ljbGVzdGFnZS5lc3RhZ2lvZnVuaWxvcmRl
+        bSIsImRlcHJlY2F0ZWQiOiIwIiwic3VtbWFyeSI6IiIsInRpdGxlIjoiRXN0
+        w6FnaW8gRnVuaWwgT3JkZW0iLCJjYXRlZ29yeSI6ImF0dHJpYnV0ZURpc3Bs
+        YXlGb3JtIiwidXBkYXRlZCI6IjIwMTQtMDYtMDUgMDQ6MDU6NTYiLCJjb250
+        cmlidXRvciI6Ii9nZGMvYWNjb3VudC9wcm9maWxlL20wY2tlZHByMGYxbGUw
+        MDAwMDAwMDAwMDAwMDAwMDAzIn19XSwiZmsiOlt7ImRhdGEiOiIvZ2RjL21k
+        L2V4NG1wbGVwcjBqZWN0MWRheHhtYno0MzJ3MzJxemRqL29iai84ODEiLCJ0
+        eXBlIjoiY29sIn0seyJkYXRhIjoiL2dkYy9tZC9leDRtcGxlcHIwamVjdDFk
+        YXh4bWJ6NDMydzMycXpkai9vYmovNzI5IiwidHlwZSI6ImNvbCJ9XX0sIm1l
+        dGEiOnsiYXV0aG9yIjoiL2dkYy9hY2NvdW50L3Byb2ZpbGUvbTBja2VkcHIw
+        ZjFsZTAwMDAwMDAwMDAwMDAwMDAwMDMiLCJ1cmkiOiIvZ2RjL21kL2V4NG1w
+        bGVwcjBqZWN0MWRheHhtYno0MzJ3MzJxemRqL29iai8xMDcyIiwidGFncyI6
+        IiIsImNyZWF0ZWQiOiIyMDE0LTA0LTIzIDE2OjU4OjUzIiwiaWRlbnRpZmll
+        ciI6ImF0dHIubGlmZWN5Y2xlc3RhZ2UubGlmZWN5Y2xlc3RhZ2UiLCJkZXBy
+        ZWNhdGVkIjoiMCIsInN1bW1hcnkiOiIiLCJ0aXRsZSI6IkVzdMOhZ2lvIEZ1
+        bmlsIiwiY2F0ZWdvcnkiOiJhdHRyaWJ1dGUiLCJ1cGRhdGVkIjoiMjAxNC0w
+        Ni0wNSAwNDowNTo1NiIsImNvbnRyaWJ1dG9yIjoiL2dkYy9hY2NvdW50L3By
+        b2ZpbGUvbTBja2VkcHIwZjFsZTAwMDAwMDAwMDAwMDAwMDAwMDMifX19
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 15:59:23 GMT
+- request:
+    method: get
+    uri: https://secure.gooddata.com/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1073/elements
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=z42gz07QwIBkCfut; $Path=/gdc/account; GDCAuthTT=cyHwsM0KPAfF_0veGhO_YgRKBr2UqlBdz0NrHXGwuxsknDCJ16FlKws0wyM6djU43lELe39HEk4UnzEJEOjizDSyHwCinow3-hTbn_kZdC_u_AT-BrT5RrXCRbH5UMgG3Am3bdNKrYUDN1iklnRb_6P24ZD8gD0ZyJh4rs9ujpR7InYiOjE0MDIzMzAxNjIsInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJiZjE5OTk3MC1jMWE3LTQyMGUtYTg1My02ZjFiMGIyZmRjMmMifQ
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - xHrrXu5fxsrdk7Hp
+      Server:
+      - Apache
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '123'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '886'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 15:59:24 GMT
+      X-Varnish:
+      - '931048756'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"attributeElements":{"elementsMeta":{"count":6,"mode":"includeuris","filter":"","records":"6","prompt":"","attribute":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072","order":"unsorted","attributeDisplayForm":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1073","offset":"0"},"elements":[{"title":"Unmarked
+        Opportunity","uri":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072/elements?id=300087"},{"title":"Lead","uri":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072/elements?id=6"},{"title":"Lead
+        Qualificado","uri":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072/elements?id=113"},{"title":"Opportunity","uri":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072/elements?id=214448"},{"title":"Sale","uri":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072/elements?id=279632"},{"title":"Cliente","uri":"/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/1072/elements?id=12940"}]}}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 15:59:24 GMT
+recorded_with: VCR 2.5.0

@@ -100,4 +100,63 @@ describe GooderData::Project, :vcr do
     end
   end
 
+  describe "#create_mandatory_user_filter" do
+    subject(:create_filter) { project.create_mandatory_user_filter(filter_name, filter_expression) }
+
+    let(:filter_name) { 'accountfilter' }
+    let(:filter_expression) { "[/gdc/md/#{ project_id }/obj/#{ attribute_id }]=[/gdc/md/#{ project_id }/obj/#{ attribute_id }/elements?id=#{ value_id }]" }
+
+    let(:attribute_id) { 1666 }
+    let(:value_id) { 1231 }
+
+    context "when the filter_expression contains an inexistant attribute" do
+      let(:attribute_id) { 123 }
+
+      it "should raise the error from GD API telling that the attribute was not found" do
+        expect { create_filter }.to raise_error "could not create mandatory user filter '#{ filter_name }' => '#{ filter_expression }': Expression not allowed in userFilter '%s'."
+      end
+    end
+
+    it "should create the specific filter successfully" do
+      expect(create_filter).to eq "2646"
+    end
+  end
+
+  describe "#query_attributes" do
+    let(:attribute_identifier) { 'attr.account.account_id' }
+    subject(:query_attributes) { project.query_attributes }
+
+    it "should return the list of all query attributes" do
+      expect(query_attributes).not_to be_empty
+      expect(query_attributes.where(identifier: attribute_identifier).size).to eq 1
+    end
+  end
+
+  describe "#bind_mandatory_user_filter" do
+    subject(:bind) { project.bind_mandatory_user_filter(filter_id, user_profile_id) }
+
+    let(:filter_id) { 2646 }
+    let(:user_profile_id) { 'm0ckedpr0f1le0000000000000000001' }
+
+    it "should bind the filter to all given users" do
+      expect { bind }.not_to raise_error
+    end
+
+    context "when the filter does not exists" do
+      let(:filter_id) { 123 }
+
+      it "should raise an error" do
+        expect { bind }.to raise_error GooderData::ApiClient::Error, "Some userFilter references was not saved: 1"
+      end
+    end
+
+    context "when the profile does not exists" do
+      let(:user_profile_id) { '123123123' }
+
+      it "should raise an error" do
+        expect { bind }.to raise_error GooderData::ApiClient::Error, "could not assign mandatory user filter '2646' to profile 123123123: User %s doesn't exist."
+      end
+    end
+  end
+
 end

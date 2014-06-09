@@ -1,0 +1,165 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/account/login
+    body:
+      encoding: UTF-8
+      string: '{"postUserLogin":{"login":"user@example.org","password":"my_password","remember":1}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=; $Path=/gdc/account; GDCAuthTT=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - evjtwHdty9talmv3
+      Server:
+      - Apache
+      Set-Cookie:
+      - GDCAuthSST=SWPtbKkIN6SXiVnc; path=/gdc/account; expires=Wed, 25-Jun-2014 18:10:58
+        GMT; secure; HttpOnly
+      - GDCAuthTT=; path=/gdc; expires=Sat, 10-May-2014 18:10:58 GMT; secure; HttpOnly
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '233'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '143'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 18:10:58 GMT
+      X-Varnish:
+      - '931710519'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"userLogin":{"profile":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","state":"/gdc/account/login/m0ckedpr0f1le0000000000000000001"}}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 18:10:58 GMT
+- request:
+    method: get
+    uri: https://secure.gooddata.com/gdc/account/token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=SWPtbKkIN6SXiVnc; $Path=/gdc/account; GDCAuthTT=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      X-Gdc-Request:
+      - ckpTIxsnhCwLKf1n
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, max-age=0
+      Pragma:
+      - no-cache
+      P3p:
+      - CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'
+      Set-Cookie:
+      - GDCAuthTT=gT4z6qpbAkoG66bvlqMZGBw-y9I3XP_uePP97P08Nl5CN3kofhNjNnPlM1JmYaZLqBRXFMVeJsp5ipars9RpkATViIXsaSZTeFRlnTvYguyqmnQiuZUtffrlTWa2p5mzSgAT4DEU8YqWgJNSvnDjbqNlzlQphhM7aUuLsGI9Hep7InYiOjE0MDIzMzgwNTksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJiZjE5OTk3MC1jMWE3LTQyMGUtYTg1My02ZjFiMGIyZmRjMmMifQ;
+        Path=/gdc; Secure; HttpOnly
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '15'
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 18:10:59 GMT
+      X-Varnish:
+      - '2370552730'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 18:10:59 GMT
+- request:
+    method: post
+    uri: https://secure.gooddata.com/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/userfilters
+    body:
+      encoding: UTF-8
+      string: '{"userFilters":{"items":[{"user":"/gdc/account/profile/m0ckedpr0f1le0000000000000000001","userFilters":["/gdc/md/ex4mplepr0ject1daxxmbz432w32qzdj/obj/2646"]}]}}'
+    headers:
+      Accept:
+      - application/json
+      Cookie:
+      - $Version=0; GDCAuthSST=SWPtbKkIN6SXiVnc; $Path=/gdc/account; GDCAuthTT=gT4z6qpbAkoG66bvlqMZGBw-y9I3XP_uePP97P08Nl5CN3kofhNjNnPlM1JmYaZLqBRXFMVeJsp5ipars9RpkATViIXsaSZTeFRlnTvYguyqmnQiuZUtffrlTWa2p5mzSgAT4DEU8YqWgJNSvnDjbqNlzlQphhM7aUuLsGI9Hep7InYiOjE0MDIzMzgwNTksInUiOiI2ODA3NTYiLCJsIjoiMCIsImsiOiJiZjE5OTk3MC1jMWE3LTQyMGUtYTg1My02ZjFiMGIyZmRjMmMifQ
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Gdc-Request:
+      - AIZFmBD55Hopxnnt
+      Server:
+      - Apache
+      X-Gdc-Log-Header:
+      - ''
+      X-Gdc-Request-Time:
+      - '171'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '112'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 09 Jun 2014 18:11:01 GMT
+      X-Varnish:
+      - '2370552844'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"userFiltersUpdateResult":{"failed":[],"successful":["/gdc/account/profile/m0ckedpr0f1le0000000000000000001"]}}'
+    http_version:
+  recorded_at: Mon, 09 Jun 2014 18:11:01 GMT
+recorded_with: VCR 2.5.0
