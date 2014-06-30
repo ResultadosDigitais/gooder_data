@@ -16,8 +16,8 @@ module GooderData
         connect!
       end
 
-      def values
-        url = elements_link.gsub(/^\/gdc/, '')
+      def values(label = nil)
+        url = elements_link(label).gsub(/^\/gdc/, '')
         api_to("list all available values for query attibute #{ attribute_id }") do
           get(url)
         end.responds do |response|
@@ -27,12 +27,20 @@ module GooderData
 
       private
 
-      def elements_link
+      def elements_link(label = nil)
         api_to("retrieves elements link for #{ attribute_id }") do
           get("/md/#{ project_id }/obj/#{ attribute_id }")
         end.responds do |response|
-          form = try_hash_chain(response, 'attribute', 'content', 'displayForms') || [{}]
-          link = try_hash_chain(form[0], 'links', 'elements') || ''
+          forms = try_hash_chain(response, 'attribute', 'content', 'displayForms') || [{}]
+          form = forms.first
+          forms.each do |f|
+            identifier = try_hash_chain(f, 'meta', 'identifier') || ''
+            if identifier == label
+              form = f
+              break
+            end
+          end
+          link = try_hash_chain(form, 'links', 'elements') || ''
         end
       end
 

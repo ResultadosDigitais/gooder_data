@@ -10,12 +10,11 @@ module GooderData
     NOT_FOUND = 404
     UNAUTHORIZED = 401
 
-    base_uri 'https://secure.gooddata.com/gdc'
-
     def initialize(options = {})
       @super_secure_token = ""
       @temp_token = ""
       @options = GooderData.configuration.merge(options)
+      self.class.base_uri(@options.require(:base_uri))
     end
 
     def super_secure_token=(super_secure_token)
