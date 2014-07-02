@@ -9,13 +9,13 @@ module GooderData
 
     def processes
       api_to("list processes for project '#{ project_id }'") do
-        get(path_for_project("/dataload/processes"))
+        get(path_to_project("dataload/processes"))
       end
     end
 
     def execute_process(process_id, executable_graph_path)
       api_to("execute the process #{ process_id }, graph '#{ executable_graph_path }'") do
-        post(path_for_project("/dataload/processes/#{ process_id }/executions"), {
+        post(path_to_project("dataload/processes/#{ process_id }/executions"), {
           execution: {
             executable: executable_graph_path
           }
@@ -28,19 +28,19 @@ module GooderData
 
     def execute_schedule(schedule_id)
       api_to("execute schedule '#{ schedule_id }'") do
-        post(path_for_project("/schedules/#{ schedule_id }/executions"), { execution: {} })
+        post(path_to_project("schedules/#{ schedule_id }/executions"), { execution: {} })
       end
     end
 
     def roles
       api_to("list roles in the project") do
-        get(path_for_project("/roles"))
+        get(path_to_project("roles"))
       end
     end
 
     def add_user(profile_id, role_id = GooderData::Project::Role::EMBEDDED_DASHBOARD_ONLY)
       api_to("add the user '#{ profile_id }' to project '#{ project_id }'") do
-        post(path_for_project("/users"), {
+        post(path_to_project("users"), {
           user: {
             content: {
               status: "ENABLED",
@@ -59,7 +59,7 @@ module GooderData
 
     def create_mandatory_user_filter(filter_name, filter_query)
       api_to("create mandatory user filter '#{ filter_name }' => '#{ filter_query }'") do
-        post(path_for_model("/obj"), {
+        post(path_to_model('obj'), {
           userFilter: {
             content: {
               expression: filter_query
@@ -78,7 +78,7 @@ module GooderData
 
     def query_attributes
       api_to("list all query attributes of the project") do
-        get(path_for_model("/query/attributes"))
+        get path_to_query "attributes"
       end.responds do |response|
         to_json_hash_array(response, GooderData::Project::QueryAttribute, 'query', 'entries')
       end
@@ -86,7 +86,7 @@ module GooderData
 
     def bind_mandatory_user_filter(filter_id, profile_id)
       api_to("assign mandatory user filter '#{ filter_id }' to profile #{ profile_id }") do
-        post(path_for_model('/userfilters'), {
+        post(path_to_model('userfilters'), {
           userFilters: {
             items: [
               {
@@ -102,14 +102,26 @@ module GooderData
       end
     end
 
-    private
-
-    def path_for_project(path)
-      "/projects/#{ project_id }#{ path }"
+    def reports
+      api_to("list all reports of the project") do
+        get path_to_query "reports"
+      end.responds do |response|
+        to_json_hash_array(response, GooderData::Project::Report, 'query', 'entries')
+      end
     end
 
-    def path_for_model(path)
-      "/md/#{ project_id }#{ path }"
+    private
+
+    def path_to_project(path)
+      "/projects/#{ project_id }/#{ path }"
+    end
+
+    def path_to_model(path)
+      "/md/#{ project_id }/#{ path }"
+    end
+
+    def path_to_query(path)
+      path_to_model "query/#{ path }"
     end
 
     def error_messages_for_profile(response, profile_id, root_object_name)

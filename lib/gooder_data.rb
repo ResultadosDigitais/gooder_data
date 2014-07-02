@@ -13,6 +13,7 @@ require 'gooder_data/project/query_attribute'
 require 'gooder_data/project/query_value'
 require 'gooder_data/project/query'
 require 'gooder_data/project/dashboard'
+require 'gooder_data/project/report'
 
 
 module GooderData
