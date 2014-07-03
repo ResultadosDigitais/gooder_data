@@ -21,17 +21,13 @@ module GooderData
         api_to("fetch current dataResult for report #{ report_id }") do
           get(uri)
         end.responds do |response|
-          @data = try_hash_chain(response, 'xtab_data')
+          @data = response
         end
       end
 
       def series
         validate_fetched_data
-        @data["data"]
-      end
-
-      def serie
-        series.first
+        Series.parse(@data)
       end
 
       private

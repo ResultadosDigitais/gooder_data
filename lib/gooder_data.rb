@@ -14,7 +14,7 @@ require 'gooder_data/project/query_value'
 require 'gooder_data/project/query'
 require 'gooder_data/project/dashboard'
 require 'gooder_data/project/report'
-
+require 'gooder_data/project/report/series'
 
 module GooderData
 
