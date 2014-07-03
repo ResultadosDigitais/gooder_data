@@ -5,7 +5,7 @@ module GooderData
 
         def self.parse(json)
           [
-            new(JSON.parse(json)['xtab_data'], 0)
+            new(json['xtab_data'], 0)
           ]
         end
 

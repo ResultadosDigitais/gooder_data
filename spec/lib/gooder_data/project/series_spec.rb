@@ -772,7 +772,7 @@ JS
 
 describe GooderData::Project::Report::Series do
   describe ".parse" do
-    subject(:parse) { GooderData::Project::Report::Series.parse(json) }
+    subject(:parse) { GooderData::Project::Report::Series.parse(JSON.parse(json)) }
 
     context "when there are only one series" do
       let(:json) { one_serie_json }
