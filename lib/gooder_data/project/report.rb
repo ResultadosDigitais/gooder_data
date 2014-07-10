@@ -30,6 +30,11 @@ module GooderData
         Series.parse(@data)
       end
 
+      def export(format = "pdf")
+        validate_fetched_data
+        export_report(format)
+      end
+
       private
 
       def validate_fetched_data
@@ -45,6 +50,20 @@ module GooderData
           })
         end.responds do |response|
           try_hash_chain(response, 'execResult', 'dataResult') || ''
+        end
+      end
+
+      def export_report(format)
+        api_to("execute report #{ report_id }") do
+          puts @data
+          post("/exporter/executor", {
+            result_req: {
+              format: format,
+              result: @data.to_json
+            }
+          })
+        end.responds do |response|
+          try_hash_chain(response, 'uri' ) || ''
         end
       end
 
