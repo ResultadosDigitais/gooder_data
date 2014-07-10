@@ -17,7 +17,7 @@ module GooderData
       end
 
       def fetch
-        uri = (execute.try_hash_chain(response, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
+        uri = (execute.try_hash_chain(execute, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
         api_to("fetch current dataResult for report #{ report_id }") do
           get(uri)
         end.responds do |response|
@@ -60,7 +60,10 @@ module GooderData
             }
           })
         end.responds do |response|
-          url = "https://secure.gooddata.com#{try_hash_chain(response, "uri") || ''}"
+          url = "https://secure.gooddata.com"
+          uri = try_hash_chain(response, "uri") || ''
+
+          "#{url}#{uri.to_s}"
         end
       end
 
