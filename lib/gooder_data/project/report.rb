@@ -60,7 +60,10 @@ module GooderData
             }
           })
         end.responds do |response|
-          url = "https://secure.gooddata.com#{try_hash_chain(response, "uri") || ''}"
+          url = "https://secure.gooddata.com"
+          uri = try_hash_chain(response, "uri") || ''
+
+          "#{url}#{uri.to_s}"
         end
       end
 
