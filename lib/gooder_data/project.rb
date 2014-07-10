@@ -22,7 +22,6 @@ module GooderData
         })
       end.that_responds do |response|
         poll_url = try_hash_chain(response, 'executionTask', 'links', 'poll') || ""
-        execution_id = capture_match(poll_url, /\/executions\/([^\/\Z]*).*$/)
       end
     end
 
