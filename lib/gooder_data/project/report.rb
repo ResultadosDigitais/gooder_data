@@ -17,7 +17,7 @@ module GooderData
       end
 
       def fetch
-        uri = execute.gsub(/^\/gdc/, '')
+        uri = (execute.try_hash_chain(response, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
         api_to("fetch current dataResult for report #{ report_id }") do
           get(uri)
         end.responds do |response|
@@ -30,9 +30,9 @@ module GooderData
         Series.parse(@data)
       end
 
-      def export(format = "pdf")
+      def export(fmt = "pdf")
         validate_fetched_data
-        export_report(format)
+        get_url_report_export(fmt)
       end
 
       private
@@ -48,22 +48,19 @@ module GooderData
               report: "/gdc/md/#{ project_id }/obj/#{ report_id }"
             }
           })
-        end.responds do |response|
-          try_hash_chain(response, 'execResult', 'dataResult') || ''
         end
       end
 
-      def export_report(format)
+      def get_url_report_export(fmt)
         api_to("execute report #{ report_id }") do
-          puts @data
           post("/exporter/executor", {
             result_req: {
-              format: format,
-              result: @data.to_json
+              format: fmt,
+              result: execute.to_json
             }
           })
         end.responds do |response|
-          try_hash_chain(response, 'uri' ) || ''
+          url = "https://secure.gooddata.com#{try_hash_chain(response, "uri") || ''}"
         end
       end
 
