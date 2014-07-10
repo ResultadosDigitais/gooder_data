@@ -56,7 +56,7 @@ module GooderData
           post("/exporter/executor", {
             result_req: {
               format: fmt,
-              result: execute.to_json
+              result: execute
             }
           })
         end.responds do |response|
