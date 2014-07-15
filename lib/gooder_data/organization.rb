@@ -25,6 +25,16 @@ module GooderData
       end
     end
 
+    def get_user(user_email)
+      api_to("create the user '#{ user_email }'") do |options|
+        get("/account/domains/#{ options.require(:organization_name) }/users?login=#{user_email}")
+      end.that_responds do |response|
+        items = try_hash_chain(response, 'accountSettings', 'items') || ['']
+        links = try_hash_chain(items.first, 'accountSetting', 'links', 'self') || ''
+        capture_match(links, /\/profile\/([^\/\Z]*).*$/)
+      end
+    end
+
   end
 
 end
