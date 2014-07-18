@@ -25,6 +25,10 @@ module GooderData
         end
       end
 
+      def data
+        @data
+      end
+
       def series
         validate_fetched_data
         Series.parse(@data)

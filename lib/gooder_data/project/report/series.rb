@@ -3,33 +3,46 @@ module GooderData
     class Report
       class Series
 
+        attr_reader :name, :data
+
         def self.parse(json)
-          [
-            new(json['xtab_data'], 0)
-          ]
-        end
+          json = json['xtab_data']
+          rows = json['rows']
+          columns = json['columns']
+          data = json['data']
 
-        def initialize(json, series_index)
-          @series_index = series_index
-
-          @rows = json['rows']
-          @tree_index = @rows['tree']['index']
-          @_data = json['data']
-        end
-
-        def process
-          @data = {}
-
-          @rows['lookups'][@series_index].each do |id, y|
-            index = @tree_index[id][@series_index].to_i
-            x = @_data[index][@series_index]
-            @data[y] = x
+          series = []
+          rows['lookups'][0].each do |series_id, series_name|
+            series_index = tree_index(rows, series_id)
+            d = process(columns, data, series_index)
+            series[series_index] = new(series_name, d)
           end
-          @data
+          series
         end
 
-        def data
-          @data ||= process
+        def initialize(name, data)
+          @name = name
+          @data = data
+        end
+
+        def to_s
+          name
+        end
+
+        private
+
+        def self.tree_index(axis, id)
+          axis['tree']['index'][id][0]
+        end
+
+        def self.process(axis, data, index)
+          d = {}
+          axis['lookups'][0].each do |id, key|
+            axis_index = tree_index(axis, id)
+            value = data[index][axis_index]
+            d[key] = value
+          end
+          d
         end
 
       end
