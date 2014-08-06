@@ -62,6 +62,14 @@ module GooderData
 
       private
 
+      def _dump(level)
+        Marshal.dump({}.merge(self))
+      end
+
+      def self._load(args)
+        new(Marshal.load(args))
+      end
+
       def raise_unknown_option_error(option_name)
         raise UnknownOptionError.new, "unknown option '#{ option_name }'. See GooderData::Configuration for available options"
       end
