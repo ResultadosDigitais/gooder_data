@@ -21,7 +21,7 @@ module GooderData
         api_to("fetch current dataResult for report #{ report_id }") do
           get(uri)
         end.responds do |response|
-          @data = response
+          @data = response.parsed_response
         end
       end
 
