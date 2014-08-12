@@ -30,25 +30,18 @@ module GooderData
       end
 
       def series
-        validate_fetched_data
         Series.parse(@data)
       end
 
       def x_axis
-        validate_fetched_data
         XAxis.parse(@data)
       end
 
       def export(fmt = "pdf")
-        validate_fetched_data
         get_url_report_export(fmt)
       end
 
       private
-
-      def validate_fetched_data
-        raise "There are no fetched data. Please use fetch first" if @data.nil?
-      end
 
       def execute
         api_to("execute report #{ report_id }") do
