@@ -5,12 +5,14 @@ module GooderData
     attr_accessor :base_uri, :good_data_sso_public_key_url, :good_data_sso_recipient
     attr_accessor :sso_authentication_provider, :sso_signer_email, :sso_signer_password, :sso_signature_expiration_in_seconds
     attr_accessor :organization_name, :project_id, :user, :user_password
+    attr_accessor :max_retries
 
     def initialize
       self.base_uri = 'https://secure.gooddata.com/gdc'
       self.good_data_sso_public_key_url = 'https://developer.gooddata.com/downloads/sso/gooddata-sso.pub'
       self.good_data_sso_recipient = 'security@gooddata.com'
       self.sso_signature_expiration_in_seconds = 36 * 3600 # 10 min < expiration < 36 hours; https://developer.gooddata.com/article/gooddata-pgp-single-sign-on
+      self.max_reties = 10
     end
 
     def merge(custom_options)
@@ -38,6 +40,7 @@ module GooderData
         project_id: self.project_id,
         user: self.user,
         user_password: self.user_password
+        max_retries: self.max_retries
       )
     end
 
