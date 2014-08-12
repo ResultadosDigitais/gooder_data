@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'gooder_data/session_id'
 
-describe GooderData::SessionId do
+describe GooderData::SessionId, :vcr do
 
   let(:user_email) { "user@domain.com" }
 

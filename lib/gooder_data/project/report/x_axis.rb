@@ -1,10 +1,10 @@
 module GooderData
   class Project
     class Report
-      class Series < Data
+      class XAxis < Data
 
         def self.order(first, last)
-          [first, last]
+          [last, first]
         end
 
       end

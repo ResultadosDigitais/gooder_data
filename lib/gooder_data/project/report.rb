@@ -34,6 +34,11 @@ module GooderData
         Series.parse(@data)
       end
 
+      def x_axis
+        validate_fetched_data
+        XAxis.parse(@data)
+      end
+
       def export(fmt = "pdf")
         validate_fetched_data
         get_url_report_export(fmt)
