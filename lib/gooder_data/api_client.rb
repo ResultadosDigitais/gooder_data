@@ -115,7 +115,11 @@ module GooderData
     end
 
     def error_message(response)
-      try_hash_chain(response, 'error', 'message')
+      error = response['error'] || {}
+      message = error['message'] || ""
+      parameters = error['parameters'] || []
+
+      message % parameters
     end
 
     def basic_options
