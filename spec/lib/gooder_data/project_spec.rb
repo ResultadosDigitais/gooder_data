@@ -113,7 +113,7 @@ describe GooderData::Project, :vcr do
       let(:attribute_id) { 123 }
 
       it "should raise the error from GD API telling that the attribute was not found" do
-        expect { create_filter }.to raise_error "could not create mandatory user filter '#{ filter_name }' => '#{ filter_expression }': Expression not allowed in userFilter '%s'."
+        expect { create_filter }.to raise_error "could not create mandatory user filter '#{ filter_name }' => '#{ filter_expression }': Expression not allowed in userFilter '#{ filter_expression }'."
       end
     end
 
@@ -154,7 +154,7 @@ describe GooderData::Project, :vcr do
       let(:user_profile_id) { '123123123' }
 
       it "should raise an error" do
-        expect { bind }.to raise_error GooderData::ApiClient::Error, "could not assign mandatory user filter '2646' to profile 123123123: User %s doesn't exist."
+        expect { bind }.to raise_error GooderData::ApiClient::Error, "could not assign mandatory user filter '2646' to profile #{ user_profile_id }: User #{ user_profile_id } doesn't exist."
       end
     end
   end

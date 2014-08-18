@@ -132,7 +132,7 @@ module GooderData
     end
 
     def project_id
-      @options.require(:project_id)
+      options.require(:project_id)
     end
 
   end

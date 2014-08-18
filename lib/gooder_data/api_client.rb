@@ -9,6 +9,7 @@ module GooderData
     BAD_REQUEST = 400
     NOT_FOUND = 404
     UNAUTHORIZED = 401
+    STILL_PROCESSING = 202
 
     def initialize(options = {})
       @super_secure_token = ""
@@ -25,7 +26,7 @@ module GooderData
       @temp_token = api_token
     end
 
-    def connect!(user = @options[:user], password = @options[:user_password])
+    def connect!(user = options[:user], password = options[:user_password])
       login!(user, password)
       api_token!
       self
@@ -65,8 +66,18 @@ module GooderData
 
     def api_to(description, pre_validation = :needs_api_token)
       send(pre_validation)
-      response = yield @options
+      response = yield options
       validate(response, "could not #{ description }")
+    end
+
+    def retry_api_to(description, pre_validation = :needs_api_token, &api_call_block)
+      response = nil
+      (0..options.require(:max_retries)).each do
+        response = api_to(description, pre_validation, &api_call_block)
+        break unless processing?(response)
+        sleep options.require(:retry_delay_in_seconds).to_f
+      end
+      response
     end
 
     def post(path, data)
@@ -80,11 +91,19 @@ module GooderData
       send_request(:get, path)
     end
 
+    def options
+      @options
+    end
+
     private
+
+    def processing?(response)
+      response.code == STILL_PROCESSING
+    end
 
     def to_json_hash_array(response, api_class, *array_path)
       elements = try_hash_chain(response, *array_path) || []
-      JsonHashArray.from_haw_json(api_class, elements, @options)
+      JsonHashArray.from_haw_json(api_class, elements, options)
     end
 
     def no_validations; end

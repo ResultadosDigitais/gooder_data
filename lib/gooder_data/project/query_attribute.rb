@@ -11,7 +11,7 @@ module GooderData
 
       def initialize(project_id, attribute_id, options = {})
         super(options)
-        @project_id = project_id || @options[:project_id]
+        @project_id = project_id || options[:project_id]
         @attribute_id = attribute_id.to_i
         connect!
       end
