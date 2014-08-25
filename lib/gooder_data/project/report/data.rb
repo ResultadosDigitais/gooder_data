@@ -6,7 +6,7 @@ module GooderData
         attr_reader :name, :data
 
         def self.parse(json)
-          return [] unless json
+          return [] unless json && json['xtab_data']
 
           json = json['xtab_data']
           rows = json['rows']
