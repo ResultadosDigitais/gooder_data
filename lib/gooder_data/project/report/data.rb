@@ -3,51 +3,87 @@ module GooderData
     class Report
       class Data
 
-        attr_reader :name, :data
+        attr_reader :data, :raw_data
 
         def self.parse(json)
           return [] unless json && json['xtab_data']
 
           json = json['xtab_data']
-          rows = json['rows']
-          columns = json['columns']
-          data = json['data']
+          new(json)
+        end
 
-          datasets = order(rows, columns)
+        def initialize(raw_data)
+          @raw_data = raw_data
+          @data = parse
+        end
 
-          series = []
-          datasets.first['lookups'][0].each do |series_id, series_name|
-            series_index = tree_index(datasets.first, series_id)
-            d = process(datasets.last, data, series_index)
-            series[series_index] = new(series_name, d)
+        def metrics_axis
+          rows
+        end
+
+        def index_axis
+          columns
+        end
+
+        def rows
+          raw_data['rows']
+        end
+
+        def columns
+          raw_data['columns']
+        end
+
+        def parse
+          metrics_data = process(rows['tree'], rows['lookups'])
+          index_data = process(columns['tree'], columns['lookups'], false)
+
+          index_data.each do |c, index|
+            index = index.values.first while index.is_a?(Hash)
+            index_data[c] = index
           end
-          IndexedHash.new(series, :name)
+
+          group(metrics_data, index_data)
         end
 
-        def initialize(name, data)
-          @name = name
-          @data = data
-        end
-
-        def to_s
-          name
-        end
-
-        private
-
-        def self.tree_index(axis, id)
-          axis['tree']['index'][id][0]
-        end
-
-        def self.process(axis, data, index)
-          d = {}
-          axis['lookups'][0].each do |id, key|
-            axis_index = tree_index(axis, id)
-            indexes = order(index, axis_index)
-            value = data[indexes.first][indexes.last]
-            d[key] = value
+        def group(metrics_data, index_data)
+          index_data.each do |c, index|
+            index_data[c] = grab(metrics_data, index)
           end
-          d
+        end
+
+        def grab(hash, index)
+          new_hash = {}
+          hash.each do |k, v|
+            if v.is_a? Array
+              new_hash[k] = v[index]
+            else
+              new_hash[k] = grab(hash[k], index)
+            end
+          end
+          new_hash
+        end
+
+        def metrics_data?(tree)
+          children = tree['children']
+          return tree['type'] == 'metric' if children.empty?
+          metrics_data?(children.first)
+        end
+
+        def process(tree, lookups, fetch_data = true, level = -1)
+          children = tree['children']
+          id = tree['id'] && id = lookups[level][id]
+          index = tree['first']
+          value = fetch_data ? raw_data['data'][index] : index
+          return { id => value } if children.empty?
+
+          d = children.reduce({}) do |men, child|
+            men.merge(process(child, lookups, fetch_data, level + 1))
+          end
+          id ? { id => d } : d
+        end
+
+        def method_missing(m, *args, &block)
+          data.send(m, *args, &block)
         end
 
       end

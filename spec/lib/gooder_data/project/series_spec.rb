@@ -8,14 +8,14 @@ describe GooderData::Project::Report::Series do
 
     context "when there are only one series" do
       let(:json) { one_series_json }
-      let(:series) { parse.first }
+      let(:series) { parse.values.first }
 
       it "should have size one" do
         expect(parse.size).to eq 1
       end
 
       describe "#name" do
-        subject(:name) { series.name }
+        subject(:name) { parse.keys.first }
 
         it "should have the name of the series" do
           expect(name).to eq "Qtd. Pessoas (Cadastro)"
@@ -23,8 +23,6 @@ describe GooderData::Project::Report::Series do
       end
 
       describe "#data" do
-        subject(:data) { series.data }
-
         context "when the given x value is present in the series x axis" do
           [
             ['1/2014', '10346'],
@@ -35,7 +33,7 @@ describe GooderData::Project::Report::Series do
             ['6/2014', '13025']
           ].each do |x, y|
             it "should return the y value of that point" do
-              expect(data[x]).to eq y
+              expect(series[x]).to eq y
             end
           end
 
@@ -52,7 +50,7 @@ describe GooderData::Project::Report::Series do
       end
 
       describe "#data" do
-        subject(:data) { series.first.data }
+        subject(:data) { series.values.first }
 
         context "when the given x value is present in the series x axis" do
           [

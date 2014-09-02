@@ -3,8 +3,10 @@ module GooderData
     class Report
       class XAxis < Data
 
-        def self.order(first, last)
-          [last, first]
+        def group(metrics_data, index_data)
+          index_data.each do |c, index|
+            index_data[c] = grab(metrics_data, index)
+          end
         end
 
       end

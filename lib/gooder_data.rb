@@ -7,7 +7,6 @@ require 'gooder_data/project'
 require 'gooder_data/errors'
 require 'gooder_data/utils/json_hash_array'
 require 'gooder_data/utils/json_hash_object'
-require 'gooder_data/utils/indexed_hash'
 
 require 'gooder_data/project/role'
 require 'gooder_data/project/query_attribute'
