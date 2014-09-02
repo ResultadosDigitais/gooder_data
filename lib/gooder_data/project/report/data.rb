@@ -17,14 +17,6 @@ module GooderData
           @data = parse
         end
 
-        def metrics_axis
-          rows
-        end
-
-        def index_axis
-          columns
-        end
-
         def rows
           raw_data['rows']
         end
@@ -71,7 +63,7 @@ module GooderData
 
         def process(tree, lookups, fetch_data = true, level = -1)
           children = tree['children']
-          id = tree['id'] && id = lookups[level][id]
+          id = tree['id'] and id = lookups[level][id]
           index = tree['first']
           value = fetch_data ? raw_data['data'][index] : index
           return { id => value } if children.empty?

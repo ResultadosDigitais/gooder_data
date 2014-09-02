@@ -3,8 +3,10 @@ require 'spec_helper'
 describe GooderData::Project::Report::Series do
   describe ".parse" do
     subject(:parse) { GooderData::Project::Report::Series.parse(JSON.parse(json)) }
+    let(:series) { parse }
     let(:one_series_json) { File.read('spec/fixtures/gooder_data/project/one_series_report.json') }
     let(:multi_series_json) { File.read('spec/fixtures/gooder_data/project/multi_series_report.json') }
+    let(:multi_axis_multi_series_json) { File.read('spec/fixtures/gooder_data/project/multi_axis_multi_series_report.json') }
 
     context "when there are only one series" do
       let(:json) { one_series_json }
@@ -43,7 +45,6 @@ describe GooderData::Project::Report::Series do
 
     context "when there are multiple series" do
       let(:json) { multi_series_json }
-      let(:series) { parse }
 
       it "should have the correct size of series" do
         expect(parse.size).to eq 6

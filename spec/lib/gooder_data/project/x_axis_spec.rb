@@ -66,12 +66,8 @@ describe GooderData::Project::Report::XAxis do
         expect(axis.size).to eq 11
       end
 
-      describe '#y_axis' do
-        context 'when the given x value is present in the series x axis' do
-          xit 'should return the y value of that point' do
-            expect(axis.data).to eq Hash.new
-          end
-        end
+      it 'should return the y value of that point' do
+        expect(axis['1/2014']['startups.ig.com.br']).to eq "Visitantes" => "256", "Leads" => "1", "Leads Qualificados" => nil, "Oportunidades" => nil, "Vendas" => nil
       end
     end
   end
