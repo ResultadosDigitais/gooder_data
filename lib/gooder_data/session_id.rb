@@ -11,7 +11,7 @@ module GooderData
     end
 
     def to_url
-      GooderData::SSO.import_key!(@options[:good_data_sso_public_key_url]) unless GooderData::SSO.has_key?(@options[:good_data_sso_recipient])
+      GooderData::SSO.import_key!(@options[:good_data_sso_public_key_url]) unless GooderData::SSO.key?(@options[:good_data_sso_recipient])
 
       signed_content = sign(session_id_json)
       encrypted_content = encrypt(signed_content)

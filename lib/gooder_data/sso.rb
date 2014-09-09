@@ -17,7 +17,7 @@ module GooderData
       "https://secure.gooddata.com/gdc/account/customerlogin?sessionId=#{ session_id }&serverURL=#{ server_url }&targetURL=#{ target_url }"
     end
 
-    def self.has_key?(name)
+    def self.key?(name)
       GPGME::Key.find(:public, name).any?
     end
 
