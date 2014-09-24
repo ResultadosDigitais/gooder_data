@@ -1,7 +1,9 @@
 module GooderData
   class Project
     class Report < GooderData::ApiClient
-      attr_reader :project_id, :report_id
+      attr_reader :project_id, :report_id, :data
+
+      WAIT = 'WAIT'
 
       def self.from_json_hash(hash, options = {})
         link = hash['link']
@@ -19,15 +21,13 @@ module GooderData
       def fetch
         uri = (try_hash_chain(execute, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
         retry_api_to("fetch current dataResult for report #{ report_id }") do
-          get(uri)
+          response = get(uri)
+          response.code = STILL_PROCESSING if status(response) == WAIT
+          response
         end.responds do |response|
           @data = response.parsed_response
         end
         self
-      end
-
-      def data
-        @data
       end
 
       def series
@@ -43,6 +43,10 @@ module GooderData
       end
 
       private
+
+      def status(response)
+        try_hash_chain(response.parsed_response, 'taskState', 'status')
+      end
 
       def execute
         api_to("execute report #{ report_id }") do
