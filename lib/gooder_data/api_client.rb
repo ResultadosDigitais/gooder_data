@@ -11,6 +11,8 @@ module GooderData
     UNAUTHORIZED = 401
     STILL_PROCESSING = 202
 
+    STATUS_WAIT = 'WAIT'
+
     def initialize(options = {})
       @super_secure_token = ""
       @temp_token = ""
@@ -98,7 +100,7 @@ module GooderData
     private
 
     def processing?(response)
-      response.code == STILL_PROCESSING
+      response.code == STILL_PROCESSING || response.task_status == STATUS_WAIT
     end
 
     def to_json_hash_array(response, api_class, *array_path)
@@ -154,7 +156,7 @@ module GooderData
       self.class.send(method, path, options || basic_options)
     end
 
-    def try_hash_chain(hash, *key_chain)
+    def self.try_hash_chain(hash, *key_chain)
       return nil if hash.nil? || key_chain.empty? || !hash.is_a?(Hash) || !hash.include?(key_chain.first)
 
       key = key_chain.delete_at(0)
@@ -162,6 +164,10 @@ module GooderData
       return value if key_chain.empty?
 
       try_hash_chain(value, *key_chain)
+    end
+
+    def try_hash_chain(hash, *key_chain)
+      self.class.try_hash_chain(hash, *key_chain)
     end
 
     def success?(response)
@@ -190,5 +196,9 @@ module HTTParty
       yield self
     end
     alias_method :responds, :that_responds
+
+    def task_status
+      ::GooderData::ApiClient.try_hash_chain(parsed_response, 'taskState', 'status')
+    end
   end
 end
