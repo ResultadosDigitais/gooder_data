@@ -77,6 +77,7 @@ module GooderData
       (0..options.require(:max_retries)).each do
         response = api_to(description, pre_validation, &api_call_block)
         break unless processing?(response)
+        puts "Retrying #{description}: #{response.code}: #{response.task_status}"
         sleep options.require(:retry_delay_in_seconds).to_f
       end
       response
