@@ -17,28 +17,35 @@ module GooderData
       end
 
       def fetch
-        uri = (try_hash_chain(execute, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
         retry_api_to("fetch current dataResult for report #{ report_id }") do
-          get(uri)
+          get(data_fetch_url)
         end.responds do |response|
-          @data = response.parsed_response
+          @data = response.parsed_response unless processing?(response)
         end
         self
       end
 
       def series
-        Series.parse(@data)
+        Series.parse(data)
       end
 
       def x_axis
-        XAxis.parse(@data)
+        XAxis.parse(data)
       end
 
       def export(fmt = "pdf")
         get_url_report_export(fmt)
       end
 
+      def fetched?
+        !!data
+      end
+
       private
+
+      def data_fetch_url
+        @data_fetch_url ||= (try_hash_chain(execute, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
+      end
 
       def execute
         api_to("execute report #{ report_id }") do
