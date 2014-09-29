@@ -25,6 +25,11 @@ module GooderData
         self
       end
 
+      def fetch!
+        fetch
+        fail "Report data could not be fetched" unless fetched?
+      end
+
       def series
         Series.parse(data)
       end
