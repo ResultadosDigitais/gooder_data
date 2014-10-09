@@ -101,7 +101,7 @@ module GooderData
     private
 
     def processing?(response)
-      response.code == STILL_PROCESSING || response.task_status == STATUS_WAIT
+      response.processing?
     end
 
     def to_json_hash_array(response, api_class, *array_path)
@@ -197,6 +197,10 @@ module HTTParty
       yield self
     end
     alias_method :responds, :that_responds
+
+    def processing?
+      code == ::GooderData::ApiClient::STILL_PROCESSING || task_status == ::GooderData::ApiClient::STATUS_WAIT
+    end
 
     def task_status
       ::GooderData::ApiClient.try_hash_chain(parsed_response, 'taskState', 'status')

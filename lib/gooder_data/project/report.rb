@@ -13,7 +13,7 @@ module GooderData
         super(options)
         @project_id = project_id || options[:project_id]
         @report_id = report_id.to_i
-        @data = nil
+        reset
       end
 
       def fetch
@@ -44,6 +44,11 @@ module GooderData
 
       def fetched?
         !!data
+      end
+
+      def reset
+        @data = nil
+        @data_fetch_url = nil
       end
 
       private
