@@ -1,7 +1,13 @@
 module GooderData
   class Project
     class Report < GooderData::ApiClient
-      attr_reader :project_id, :report_id, :data
+      attr_reader :project_id, :report_id, :data, :status
+
+      class Status
+        NOT_FETCHED = 'Not Fetched'
+        PROCESSING = 'Processing'
+        FETCHED = 'Fetched'
+      end
 
       def self.from_json_hash(hash, options = {})
         link = hash['link']
@@ -16,22 +22,15 @@ module GooderData
         reset
       end
 
-      def fetch_without_retry
-        api_to("fetch current dataResult for report #{ report_id }") do
-          get(data_fetch_url)
-        end.responds do |response|
-          fail NoContentError, 'No Content' if response.code == NO_CONTENT
-          @data = response.parsed_response unless processing?(response)
-        end
-        self
-      end
-
       def fetch
+        return self if fetched?
+
+        @status = Status::PROCESSING
         retry_api_to("fetch current dataResult for report #{ report_id }") do
           get(data_fetch_url)
         end.responds do |response|
-          fail NoContentError, 'No Content' if response.code == NO_CONTENT
-          @data = response.parsed_response unless processing?(response)
+          @status = Status::FETCHED unless processing?(response)
+          @data = response.parsed_response
         end
         self
       end
@@ -53,16 +52,23 @@ module GooderData
         get_url_report_export(fmt)
       end
 
+      def no_content?
+        fetched? && !data
+      end
+
       def fetched?
-        !!data
+        status == Status::FETCHED
       end
 
       def reset
         @data = nil
         @data_fetch_url = nil
+        @status = Status::NOT_FETCHED
       end
 
       private
+
+      def _fetch(method)
 
       def data_fetch_url
         @data_fetch_url ||= (try_hash_chain(execute, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
