@@ -60,6 +60,10 @@ module GooderData
         status == Status::FETCHED
       end
 
+      def processing?
+        status == Status::PROCESSING
+      end
+
       def reset
         @data = nil
         @data_fetch_url = nil
