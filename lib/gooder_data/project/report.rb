@@ -29,6 +29,7 @@ module GooderData
         retry_api_to("fetch current dataResult for report #{ report_id }") do
           get(data_fetch_url)
         end.responds do |response|
+          fail NoContentError, 'No Content' if response.code == NO_CONTENT
           @data = response.parsed_response unless processing?(response)
         end
         self

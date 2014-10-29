@@ -14,6 +14,8 @@ module GooderData
 
     class Error < GooderData::Error; end
 
+    class NoContentError < GooderData::Error; end
+
     class BadRequestError < GooderData::ApiClient::Error; end
 
   end

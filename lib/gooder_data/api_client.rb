@@ -10,6 +10,7 @@ module GooderData
     NOT_FOUND = 404
     UNAUTHORIZED = 401
     STILL_PROCESSING = 202
+    NO_CONTENT = 204
 
     STATUS_WAIT = 'WAIT'
 
