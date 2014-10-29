@@ -5,7 +5,7 @@ module GooderData
 
       class Status
         NOT_FETCHED = 'Not Fetched'
-        PROCESSING = 'Processing'
+        FETCHING = 'Fetching'
         FETCHED = 'Fetched'
       end
 
@@ -25,7 +25,7 @@ module GooderData
       def fetch
         return self if fetched?
 
-        @status = Status::PROCESSING
+        @status = Status::FETCHING
         retry_api_to("fetch current dataResult for report #{ report_id }") do
           get(data_fetch_url)
         end.responds do |response|
@@ -60,8 +60,8 @@ module GooderData
         status == Status::FETCHED
       end
 
-      def processing?
-        status == Status::PROCESSING
+      def fetching?
+        status == Status::FETCHING
       end
 
       def reset
