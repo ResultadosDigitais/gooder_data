@@ -2,6 +2,10 @@
 
 GoodData API ruby client
 
+[![Code Climate](https://codeclimate.com/github/ResultadosDigitais/gooder_data/badges/gpa.svg)](https://codeclimate.com/github/ResultadosDigitais/gooder_data)
+
+[![Test Coverage](https://codeclimate.com/github/ResultadosDigitais/gooder_data/badges/coverage.svg)](https://codeclimate.com/github/ResultadosDigitais/gooder_data)
+
 ## Installation
 
 Add this line to your application's Gemfile:
