@@ -2,7 +2,7 @@
 
 GoodData API ruby client
 
-[![Code Climate](https://codeclimate.com/github/ResultadosDigitais/gooder_data/badges/gpa.svg)](https://codeclimate.com/github/ResultadosDigitais/gooder_data) [![Test Coverage](https://codeclimate.com/github/ResultadosDigitais/gooder_data/badges/coverage.svg)](https://codeclimate.com/github/ResultadosDigitais/gooder_data) [![Build Status](https://secure.travis-ci.org/ResultadosDigitais/gooder_data.png)](http://travis-ci.org/ngsmrk/comix_scraper)
+[![Code Climate](https://codeclimate.com/github/ResultadosDigitais/gooder_data/badges/gpa.svg)](https://codeclimate.com/github/ResultadosDigitais/gooder_data) [![Test Coverage](https://codeclimate.com/github/ResultadosDigitais/gooder_data/badges/coverage.svg)](https://codeclimate.com/github/ResultadosDigitais/gooder_data) [![Build Status](https://secure.travis-ci.org/ResultadosDigitais/gooder_data.png)](http://travis-ci.org/ResultadosDigitais/gooder_data)
 
 
 ## Installation
