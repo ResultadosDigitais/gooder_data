@@ -29,5 +29,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "ZenTest"
   spec.add_development_dependency "autotest-fsevent"
   spec.add_development_dependency "autotest-growl"
-  spec.add_development_dependency "codeclimate-test-reporter"
 end
