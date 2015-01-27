@@ -110,14 +110,14 @@ describe GooderData::ApiClient, :vcr do
         before { client.api_token! }
 
         context "and the response is success in the first time" do
-          xit "should execute successfully" do
+          it "should execute successfully" do
             expect(client).to receive(:get).with("/api/path").and_return response(200, 'John')
             expect(retry_api_to).to eq 'John'
           end
         end
 
         context "and the response is still processing (code: 202)" do
-          xit "should retry the api call" do
+          it "should retry the api call" do
             times_to_be_retried = 3
             times_called = 0
             expect(client).to receive(:get).with("/api/path").exactly(4).times do
@@ -134,7 +134,7 @@ describe GooderData::ApiClient, :vcr do
             expect(retry_api_to).to eq 'John'
           end
 
-          xit "should call the api 'max_retries' + 1 times and return the last response" do
+          it "should call the api 'max_retries' + 1 times and return the last response" do
             times_called = 0
             expect(client).to receive(:get).with("/api/path").exactly(6).times do
               times_called += 1
@@ -153,6 +153,9 @@ describe GooderData::ApiClient, :vcr do
       response = double(:response)
       allow(response).to receive(:parsed_response).and_return parsed_response
       allow(response).to receive(:code).and_return code
+
+      allow(response).to receive(:processing?).and_return(code == 202 ? true : false)
+      allow(response).to receive(:task_status).and_return(code == 202 ? 'WAIT' : nil)
       response
     end
 
