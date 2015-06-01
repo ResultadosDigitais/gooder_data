@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "gpgme", "~> 2.0"
-  spec.add_dependency "httparty", "0.13.1"
+  spec.add_dependency "httparty"
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
