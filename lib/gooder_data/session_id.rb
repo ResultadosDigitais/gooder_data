@@ -25,7 +25,13 @@ module GooderData
     end
 
     def encrypt(content)
-      @crypto.encrypt(content, recipients: @options[:good_data_sso_recipient], armor: true, always_trust: true).to_s
+      @crypto.encrypt(content, encrypt_options).to_s
+    end
+
+    def encrypt_options
+      options = { recipients: @options[:good_data_sso_recipient], armor: true, always_trust: true }
+      options[:password] = @options[:sso_signer_password] if @options[:sso_signer_password]
+      options
     end
 
     def sign_options
