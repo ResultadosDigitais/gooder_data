@@ -29,9 +29,7 @@ module GooderData
     end
 
     def encrypt_options
-      options = { recipients: @options[:good_data_sso_recipient], armor: true, always_trust: true }
-      options[:password] = @options[:sso_signer_password] if @options[:sso_signer_password]
-      options
+      { recipients: @options[:good_data_sso_recipient], armor: true, always_trust: true }
     end
 
     def sign_options
@@ -39,7 +37,7 @@ module GooderData
         armor: true
       }
       options[:signer] = @options[:sso_signer_email] if @options[:sso_signer_email]
-      options[:password] = @options[:sso_signer_password] if @options[:sso_signer_password]
+      options[:passphrase] = @options[:sso_signer_password] if @options[:sso_signer_password]
       options
     end
 
