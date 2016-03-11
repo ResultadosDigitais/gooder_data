@@ -16,6 +16,10 @@ module GooderData
 
     class BadRequestError < GooderData::ApiClient::Error; end
 
+    class Unauthorized < GooderData::ApiClient::Error; end
+
+    class NotFound < GooderData::ApiClient::Error; end
+
   end
 
 end
