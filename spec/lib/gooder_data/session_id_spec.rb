@@ -52,7 +52,7 @@ describe GooderData::SessionId, :vcr do
       context "and the password was given" do
         let(:password) { "my custom password" }
         it "should sign with the given signer's secret and password" do
-          expect(@crypto).to receive(:sign).with(anything, { armor: true, signer: signer, password: password })
+          expect(@crypto).to receive(:sign).with(anything, { armor: true, signer: signer, passphrase: password })
           GooderData::SessionId.new(user_email, sso_signer_email: signer, sso_signer_password: password).to_url
         end
       end
