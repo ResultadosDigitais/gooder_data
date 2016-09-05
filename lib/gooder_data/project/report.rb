@@ -73,7 +73,7 @@ module GooderData
 
       def execute
         api_to("execute report #{ report_id }") do
-          post("/xtab2/executor3", {
+          post("/projects/#{ project_id }/execute", {
             report_req: {
               report: "/gdc/md/#{ project_id }/obj/#{ report_id }"
             }
