@@ -48,7 +48,7 @@ module GooderData
 
       def export(fmt = "pdf")
         url = get_url_report_export(fmt)
-        download(url)
+        download_file(url)
       end
 
       def no_content?
@@ -94,7 +94,7 @@ module GooderData
         end
       end
 
-      def download(url)
+      def download_file(url)
         response = get(url)
         while response.code == 202 do
           response = get(url)

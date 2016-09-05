@@ -146,6 +146,7 @@ module GooderData
     end
 
     def basic_options
+      binding.pry
       {
         headers: {
           "Accept" => "application/json",
