@@ -48,7 +48,7 @@ module GooderData
 
       def export(fmt = "pdf")
         url = get_url_report_export(fmt)
-        response = download(url)
+        response = download_file(url)
         fmt == "csv" ? csv(response) : response
       end
 
@@ -74,7 +74,7 @@ module GooderData
 
       def execute
         api_to("execute report #{ report_id }") do
-          post("/xtab2/executor3", {
+          post("/projects/#{ project_id }/execute", {
             report_req: {
               report: "/gdc/md/#{ project_id }/obj/#{ report_id }"
             }
@@ -95,7 +95,7 @@ module GooderData
         end
       end
 
-      def download(url)
+      def download_file(url)
         response = get(url)
         while response.code == 202 do
           response = get(url)
