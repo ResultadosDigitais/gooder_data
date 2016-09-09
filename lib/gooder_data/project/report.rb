@@ -48,7 +48,8 @@ module GooderData
 
       def export(fmt = "pdf")
         url = get_url_report_export(fmt)
-        download(url)
+        response = download(url)
+        fmt == "csv" ? csv(response) : response
       end
 
       def no_content?
@@ -100,6 +101,14 @@ module GooderData
           response = get(url)
         end
         response
+      end
+
+      def csv(data)
+        CSV.generate do |csv|
+          data.each do |line|
+            csv << line
+          end
+        end
       end
 
     end
