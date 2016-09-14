@@ -3,6 +3,8 @@ module GooderData
     class Report < GooderData::ApiClient
       attr_reader :project_id, :report_id, :data, :status
 
+      ACCEPTED = 202
+
       class Status
         NOT_FETCHED = 'Not Fetched'
         FETCHED = 'Fetched'
@@ -96,7 +98,7 @@ module GooderData
 
       def download_file(url)
         response = get(url)
-        while response.code == 202 do
+        while response.code == ACCEPTED do
           response = get(url)
         end
         response
