@@ -3,8 +3,6 @@ module GooderData
     class Report < GooderData::ApiClient
       attr_reader :project_id, :report_id, :data, :status
 
-      ACCEPTED = 202
-
       class Status
         NOT_FETCHED = 'Not Fetched'
         FETCHED = 'Fetched'
@@ -49,8 +47,7 @@ module GooderData
       end
 
       def export(fmt = "pdf")
-        url = get_url_report_export(fmt)
-        download_file(url)
+        get_url_report_export(fmt)
       end
 
       def no_content?
@@ -75,7 +72,7 @@ module GooderData
 
       def execute
         api_to("execute report #{ report_id }") do
-          post("/projects/#{ project_id }/execute", {
+          post("/xtab2/executor3", {
             report_req: {
               report: "/gdc/md/#{ project_id }/obj/#{ report_id }"
             }
@@ -94,14 +91,6 @@ module GooderData
         end.responds do |response|
           "https://secure.gooddata.com#{(try_hash_chain(response, "uri") || '').to_s}"
         end
-      end
-
-      def download_file(url)
-        response = get(url)
-        while response.code == ACCEPTED do
-          response = get(url)
-        end
-        response
       end
 
     end
