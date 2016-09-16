@@ -37,7 +37,7 @@ module GooderData
         armor: true
       }
       options[:signer] = @options[:sso_signer_email] if @options[:sso_signer_email]
-      options[:passphrase] = @options[:sso_signer_password] if @options[:sso_signer_password]
+      options[:password] = @options[:sso_signer_password] if @options[:sso_signer_password]
       options
     end
 
