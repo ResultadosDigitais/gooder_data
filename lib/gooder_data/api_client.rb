@@ -159,13 +159,13 @@ module GooderData
     end
 
     def self.try_hash_chain(hash, *key_chain)
-      return nil if hash.nil? || key_chain.empty? || !hash.is_a?(Hash) || !hash.include?(key_chain.first)
+      if hash.is_a?(Hash) || hash.is_a?(HTTParty::Response)
+        key = key_chain.delete_at(0)
+        value = hash.with_indifferent_access[key]
+        return value if key_chain.empty?
 
-      key = key_chain.delete_at(0)
-      value = hash[key]
-      return value if key_chain.empty?
-
-      try_hash_chain(value, *key_chain)
+        try_hash_chain(value, *key_chain)
+      end
     end
 
     def try_hash_chain(hash, *key_chain)
