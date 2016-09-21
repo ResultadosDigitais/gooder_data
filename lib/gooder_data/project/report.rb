@@ -70,7 +70,7 @@ module GooderData
       private
 
       def data_fetch_url
-        @data_fetch_url ||= (try_hash_chain(execute.parsed_response, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
+        @data_fetch_url ||= (try_hash_chain(execute, 'execResult', 'dataResult') || '').gsub(/^\/gdc/, '')
       end
 
       def execute
