@@ -92,7 +92,7 @@ module GooderData
             }
           })
         end.responds do |response|
-          "https://secure.gooddata.com#{(try_hash_chain(response, "uri") || '').to_s}"
+          "https://secure.gooddata.com#{ response.with_indifferent_access.try(:[], :uri) || ''}"
         end
       end
 
@@ -103,7 +103,6 @@ module GooderData
         end
         response
       end
-
     end
   end
 end
