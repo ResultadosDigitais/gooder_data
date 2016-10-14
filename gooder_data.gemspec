@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = "gooder_data"
   spec.version       = GooderData::VERSION
   spec.authors       = ["guih"]
-  spec.email         = ["guih.matsumoto@gmail.com"]
+  spec.email         = ["opensource@resultadosdigitais.com.br"]
   spec.summary       = %q{GoodData API client and SSO implementation utilities}
   spec.description   = %q{Flexible and easy GoodData integration utilities for ruby}
   spec.homepage      = "https://github.com/ResultadosDigitais/gooder_data"
