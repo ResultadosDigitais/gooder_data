@@ -92,6 +92,9 @@ GooderData.configure do |c|
   c.sso_signer_password = 'secretpassword'
 end
 ```
+## Maintainers
+
+ @dougpetronilio - douglas.petronilio@resultadosdigitais.com.br
 
 ## Contributing
 
