@@ -127,7 +127,6 @@ describe GooderData::Project, :vcr do
     subject(:query_attributes) { project.query_attributes }
 
     it "should return the list of all query attributes" do
-      expect(query_attributes).not_to be_empty
       expect(query_attributes.where(identifier: attribute_identifier).size).to eq 1
     end
   end

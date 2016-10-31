@@ -39,7 +39,7 @@ describe GooderData::Project::QueryAttribute, :vcr do
     subject(:values) { query_attribute.values }
 
     it "should return all values" do
-      expect(values).not_to be_empty
+      expect(values.all).not_to be_empty
     end
 
     let(:expected_values) { ["Unmarked Opportunity", "Lead",  "Lead Qualificado", "Opportunity",  "Sale",  "Cliente"] }
