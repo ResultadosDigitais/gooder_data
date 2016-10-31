@@ -5,11 +5,6 @@ module GooderData
 
       ACCEPTED = 202
 
-      class Status
-        NOT_FETCHED = 'Not Fetched'
-        FETCHED = 'Fetched'
-      end
-
       def self.from_json_hash(hash, options = {})
         link = hash['link']
         match = link.match(/md\/([^\/]+)\/obj\/(\d+)$/)

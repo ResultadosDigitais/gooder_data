@@ -13,10 +13,13 @@ require 'gooder_data/project/query_attribute'
 require 'gooder_data/project/query_value'
 require 'gooder_data/project/query'
 require 'gooder_data/project/dashboard'
+require 'gooder_data/project/status'
 require 'gooder_data/project/report'
+require 'gooder_data/project/raw_report'
 require 'gooder_data/project/report/data'
 require 'gooder_data/project/report/series'
 require 'gooder_data/project/report/x_axis'
+require 'active_support/core_ext/hash/indifferent_access'
 
 module GooderData
 
