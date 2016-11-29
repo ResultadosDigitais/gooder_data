@@ -43,7 +43,7 @@ module GooderData
       end
 
       def fetched?
-        status == GooderData::Project::Status::FETCHED
+        status == Status::FETCHED
       end
     end
   end
