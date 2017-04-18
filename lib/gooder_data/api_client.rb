@@ -132,6 +132,10 @@ module GooderData
       case response.code
       when BAD_REQUEST
         GooderData::ApiClient::BadRequestError
+      when UNAUTHORIZED
+        GooderData::ApiClient::Unauthorized
+      when NOT_FOUND
+        GooderData::ApiClient::NotFound
       else
         GooderData::ApiClient::Error
       end
@@ -139,7 +143,7 @@ module GooderData
 
     def error_message(response)
       error = response['error'] || {}
-      message = error['message'] || ""
+      message = error['message'] || response['message'] || ""
       parameters = error['parameters'] || []
 
       message % parameters
