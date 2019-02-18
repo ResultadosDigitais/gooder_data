@@ -12,9 +12,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/ResultadosDigitais/gooder_data"
   spec.license       = "MIT"
 
-  # spec.files         = `git ls-files -z`.split("\x0") # commented because of Gem::Package::TooLongFileName that was raising
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
+
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'gpgme', '~> 2.0', '>= 2.0.15'
