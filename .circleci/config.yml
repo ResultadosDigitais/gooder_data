@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/gooder-data
+    docker:
+      - image: circleci/ruby:2.5.3
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v2-dependencies-{{ .Branch }}
+
+      - run: bundle install -j4
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v2-dependencies-{{ .Branch }}
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            bundle exec rspec --format RspecJunitFormatter \
+                              --out /tmp/test-results/rspec.xml \
+                              --format documentation \
+                              spec
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
