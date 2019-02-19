@@ -1,8 +1,3 @@
-ENV['CODECLIMATE_REPO_TOKEN'] = '694646784ed8d9bbd332f9c6e86e9d44cc8617cbb5526a125f442f760af59816'
-
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-
 RSpec.configure do |c|
   c.treat_symbols_as_metadata_keys_with_true_values = true
   c.run_all_when_everything_filtered = true
@@ -18,7 +13,6 @@ VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
 end
 
-require 'pry'
 require 'gooder_data'
 
 def test_options(customization = {})
