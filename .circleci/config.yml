@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/gooder-data
     docker:
-      - image: circleci/ruby:3.2.0
+      - image: cimg/ruby:3.2.0
     steps:
       - checkout
 
