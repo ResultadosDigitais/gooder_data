@@ -3,13 +3,13 @@ jobs:
   build:
     working_directory: ~/gooder-data
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:3.2.0
     steps:
       - checkout
 
       - restore_cache:
           keys:
-          - v2-dependencies-{{ .Branch }}
+            - v2-dependencies-{{ .Branch }}
 
       - run: bundle install -j4
 
