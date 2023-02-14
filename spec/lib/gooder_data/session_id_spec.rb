@@ -12,6 +12,8 @@ describe GooderData::SessionId, :vcr do
     allow(GPGME::Crypto).to receive(:new) { @crypto }
     allow(@crypto).to receive(:sign) { |content, options| "Signed" }
     allow(@crypto).to receive(:encrypt) { |content, options| "Encrypted" }
+    
+    allow(GooderData::SSO).to receive(:import_key!).and_return(true)
   end
 
   context "given the default configuration" do
@@ -20,12 +22,13 @@ describe GooderData::SessionId, :vcr do
       let(:gd_sso_recipient) { GooderData.configuration.good_data_sso_recipient }
       let(:gd_sso_public_key_url) { GooderData.configuration.good_data_sso_public_key_url }
 
-      before { allow(GPGME::Key).to receive(:find).with(:public, gd_sso_recipient) { [] } }
+      before { 
+        allow(GooderData::SSO).to receive(:import_key!).and_return(false)
+        allow(GPGME::Key).to receive(:find).with(:public, gd_sso_recipient) { [] } 
+      }
 
       it "should import the gooddata-sso.pub from gd server" do
-        expect(GPGME::Key).to receive(:import) do |key|
-          expect(key.base_uri.to_s).to eq gd_sso_public_key_url
-        end
+        expect(GooderData::SSO).to receive(:import_key!).with(gd_sso_public_key_url)
         session_id
       end
     end
