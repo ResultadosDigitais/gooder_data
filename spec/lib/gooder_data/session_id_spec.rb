@@ -22,10 +22,10 @@ describe GooderData::SessionId, :vcr do
       let(:gd_sso_recipient) { GooderData.configuration.good_data_sso_recipient }
       let(:gd_sso_public_key_url) { GooderData.configuration.good_data_sso_public_key_url }
 
-      before { 
+      before do
         allow(GooderData::SSO).to receive(:import_key!).and_return(false)
         allow(GPGME::Key).to receive(:find).with(:public, gd_sso_recipient) { [] } 
-      }
+      end
 
       it "should import the gooddata-sso.pub from gd server" do
         expect(GooderData::SSO).to receive(:import_key!).with(gd_sso_public_key_url)
